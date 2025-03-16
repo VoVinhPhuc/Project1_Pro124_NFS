@@ -5,10 +5,14 @@ PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
 <<<<<<< HEAD
+<<<<<<< HEAD
   productGUID: eb818677397550e42b8d81095c6bcc01
 =======
   productGUID: e80abd85f9360fa4dbd81f078afd602e
 >>>>>>> origin/TungDiep
+=======
+  productGUID: 1d49709752c370d4fb33ec76a54b7971
+>>>>>>> VinhPhuc
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -18,10 +22,14 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: DefaultCompany
 <<<<<<< HEAD
+<<<<<<< HEAD
   productName: NFS_Project1
 =======
   productName: Project1_Pro124_NFS
 >>>>>>> origin/TungDiep
+=======
+  productName: Project_Pro124_NFS
+>>>>>>> VinhPhuc
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
