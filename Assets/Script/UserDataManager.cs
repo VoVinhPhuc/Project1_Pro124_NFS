@@ -18,7 +18,7 @@ public class UserList
 
 public static class UserDataManager
 {
-    private static string filePath = "C://Users//TUNG DIEP//FileData//UserData.txt";
+    private static string filePath = "D://game//FileData//Data.txt";
 
     public static UserList LoadUsers()
     {

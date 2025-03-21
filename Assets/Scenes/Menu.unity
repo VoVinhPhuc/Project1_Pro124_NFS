@@ -450,6 +450,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManagerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
+      propertyPath: ConnectionData.ServerListenAddress
+      value: 127.0.0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -674,6 +678,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 135864810673424694, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 135864810673424694, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 135864810673424694, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 245399309517091447, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -781,6 +797,22 @@ PrefabInstance:
     - target: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 183.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 177.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 868.3702
+      objectReference: {fileID: 0}
+    - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -451.16022
       objectReference: {fileID: 0}
     - target: {fileID: 7889327468280062516, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_Camera
