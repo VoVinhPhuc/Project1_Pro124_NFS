@@ -11,11 +11,17 @@ public class SignUpManager : MonoBehaviour
     public TMP_Text errorText;
     public GameObject signUpPanel; // Panel SignUp để ẩn đi sau khi đăng ký
     public Toggle passwordToggle;
+    public Button backButton;
 
     private void Start()
     {
         passwordInput.contentType = TMP_InputField.ContentType.Password;
         confirmPasswordInput.contentType = TMP_InputField.ContentType.Password;
+
+        if (backButton != null)
+        {
+            backButton.onClick.AddListener(CloseSignUpPanel);
+        }
     }
 
     public void TogglePasswordVisibility()
@@ -70,6 +76,10 @@ public class SignUpManager : MonoBehaviour
     private IEnumerator ClosePanelAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
+        signUpPanel.SetActive(false);
+    }
+    public void CloseSignUpPanel()
+    {
         signUpPanel.SetActive(false);
     }
 }

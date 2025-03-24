@@ -434,6 +434,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1428372371}
     - target: {fileID: 5366985335834190471, guid: 40ec2c361fac076419578b8be5f9f825, type: 3}
+      propertyPath: Ownership
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5366985335834190471, guid: 40ec2c361fac076419578b8be5f9f825, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 903774027
       objectReference: {fileID: 0}
