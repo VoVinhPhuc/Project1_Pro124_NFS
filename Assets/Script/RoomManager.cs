@@ -15,10 +15,13 @@ public class RoomManager : NetworkBehaviour
     private void Awake()
     {
         Debug.Log("✅ RoomManager đã được tạo trong Scene Room!");
-        // Khởi tạo danh sách người chơi đồng bộ trên mạng
-        if (playerNicknames == null)
+
+        // ✅ KHỞI TẠO NetworkList TRONG AWAKE
+        playerNicknames = new NetworkList<NicknameData>();
+
+        if (IsServer)
         {
-            playerNicknames = new NetworkList<NicknameData>();
+            Debug.Log("✅ Host đã khởi tạo NetworkList<NicknameData>!");
         }
     }
 
@@ -26,30 +29,29 @@ public class RoomManager : NetworkBehaviour
     {
         Debug.Log("✅ RoomManager Start() chạy!");
 
-        if (IsServer)
+        if (roomIdText == null)
         {
-            Debug.Log("🟢 Là Host, thử gọi OnNetworkSpawn()");
-            OnNetworkSpawn(); // Gọi thủ công nếu nó chưa chạy
+            Debug.LogError("[RoomManager] ❌ roomIdText chưa được gán trong Inspector!");
         }
-
-        roomIdText.text = "Room ID Test";
-        playerListText.text = "Waiting for players...";
-        if (roomIdText != null)
+        else
         {
             roomIdText.text = "Room ID: " + NetworkManagerUI.RoomID;
         }
 
         if (playerListText == null)
         {
-            Debug.LogError("[RoomManager] Lỗi: playerListText chưa được gán!");
+            Debug.LogError("[RoomManager] ❌ playerListText chưa được gán trong Inspector!");
+        }
+        else
+        {
+            playerListText.text = "Waiting for players...";
         }
 
-        // Lắng nghe sự thay đổi danh sách người chơi
-        playerNicknames.OnListChanged += (changeEvent) =>
+        if (IsServer)
         {
-            Debug.Log($"[RoomManager] 🔄 NetworkList thay đổi! Tổng số người chơi: {playerNicknames.Count}");
-            UpdatePlayerList();
-        };
+            Debug.Log("🟢 Là Host, thử gọi OnNetworkSpawn()");
+            OnNetworkSpawn();
+        }
     }
 
     public override void OnNetworkSpawn()
@@ -57,73 +59,80 @@ public class RoomManager : NetworkBehaviour
         base.OnNetworkSpawn();
         Debug.Log("✅ OnNetworkSpawn() của RoomManager đã chạy!");
 
+        if (playerNicknames == null)
+        {
+            Debug.LogError("❌ LỖI: playerNicknames vẫn NULL, đang khởi tạo lại!");
+            playerNicknames = new NetworkList<NicknameData>();
+        }
+
+        playerNicknames.OnListChanged += (changeEvent) =>
+        {
+            Debug.Log($"[RoomManager] 🔄 NetworkList thay đổi! Tổng số người chơi: {playerNicknames.Count}");
+            UpdatePlayerList();
+        };
+
         string nickname = PlayerPrefs.GetString("NickName", "Unknown");
-        Debug.Log($"[RoomManager] 🎭 NickName lấy từ PlayerPrefs: {nickname}");
+        Debug.Log($"🎭 NickName lấy từ PlayerPrefs: {nickname}");
 
         if (IsServer)
         {
-            Debug.Log("Host đang tự Spawn RoomManager!");
-            SpawnRoomManagerServerRpc();
-
             ulong hostClientId = NetworkManager.Singleton.LocalClientId;
-            Debug.Log($"[RoomManager] 🏠 Host ID: {hostClientId}");
+            Debug.Log($"🏠 Host ID: {hostClientId}");
+
             playerNicknames.Add(new NicknameData(hostClientId, nickname));
-
-            Debug.Log($"[RoomManager] 🏠 Host vào phòng - NickName: {nickname}");
-            AddPlayer(NetworkManager.Singleton.LocalClientId, "Host: " + nickname);
-
-            Debug.Log($"[RoomManager] 📝 Danh sách sau khi Host vào: {playerNicknames.Count} người chơi");
             UpdatePlayerList();
         }
         else
         {
-            Debug.Log($"[RoomManager] 📡 Client gửi NickName lên Host: {nickname}");
+            Debug.Log($"📡 Client gửi NickName lên Host: {nickname}");
             RequestNickNameServerRpc(NetworkManager.Singleton.LocalClientId, nickname);
         }
     }
-    [ServerRpc]
-    private void SpawnRoomManagerServerRpc()
-    {
-        Debug.Log("Server đang Spawn RoomManager...");
-        GetComponent<NetworkObject>().Spawn();
-    }
+
     [ServerRpc(RequireOwnership = false)]
     public void RequestNickNameServerRpc(ulong clientId, string nickname)
     {
         Debug.Log($"[RoomManager] 📩 Client {clientId} gửi NickName: {nickname} lên Server");
+
+        if (!IsServer)
+        {
+            Debug.LogError("[RoomManager] ❌ RequestNickNameServerRpc được gọi trên Client!");
+            return;
+        }
+
         AddPlayer(clientId, nickname);
     }
 
     private void AddPlayer(ulong clientId, string nickname)
     {
-        // Kiểm tra xem ClientId đã có trong danh sách chưa
         foreach (var player in playerNicknames)
         {
             if (player.ClientId == clientId) return;
         }
 
-        // Thêm người chơi vào danh sách
         playerNicknames.Add(new NicknameData(clientId, nickname));
         UpdatePlayerList();
     }
 
     private void UpdatePlayerList()
     {
-        Debug.Log("[RoomManager] Cập nhật danh sách người chơi trên UI.");
-        //if (playerListText == null) return;
-
-        playerListText.text = "Players in Room:\n";
-        if (playerNicknames.Count == 0)
+        if (playerListText == null)
         {
-            Debug.LogWarning("[RoomManager] ❌ Không có người chơi nào trong danh sách!");
+            Debug.LogError("[RoomManager] ❌ playerListText NULL! Không thể cập nhật UI.");
+            return;
         }
+
+        Debug.Log("[RoomManager] 🔄 Cập nhật danh sách người chơi trên UI.");
+        playerListText.text = "Players in Room:\n";
+
         foreach (var player in playerNicknames)
         {
-            Debug.Log($"[RoomManager] Cập nhật UI - NickName: {player.NickName}");
+            Debug.Log($"[RoomManager] 📋 Người chơi: {player.NickName}");
             playerListText.text += player.NickName.ToString() + "\n";
         }
         Invoke(nameof(ForceRefreshUI), 0.1f);
     }
+
     private void ForceRefreshUI()
     {
         Debug.Log("[RoomManager] 🔃 Refresh UI bằng ForceMeshUpdate");
