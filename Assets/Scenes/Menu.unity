@@ -843,6 +843,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_SizeDelta.x
       value: 183.26
@@ -858,6 +859,47 @@ PrefabInstance:
     - target: {fileID: 2746898571790404532, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -451.16022
+=======
+    - target: {fileID: 2671715737121209714, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.a
+      value: 0.27450982
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.a
+      value: 0.46666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3412957572604865987, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.a
+      value: 0.24705882
+      objectReference: {fileID: 0}
+    - target: {fileID: 3750690275260345154, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Colors.m_NormalColor.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7085070913098557571, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.a
+      value: 0.25882354
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428147438781915189, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 391.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7428147438781915189, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -764.42
+>>>>>>> TungDiep
       objectReference: {fileID: 0}
     - target: {fileID: 7889327468280062516, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_Camera
