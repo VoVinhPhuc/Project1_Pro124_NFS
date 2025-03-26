@@ -18,7 +18,7 @@ public class UserList
 
 public static class UserDataManager
 {
-    private static string filePath = "D://game//FileData//Data.txt";
+    private static string filePath = Path.Combine(Application.persistentDataPath, "UserData.txt");
 
     public static UserList LoadUsers()
     {
