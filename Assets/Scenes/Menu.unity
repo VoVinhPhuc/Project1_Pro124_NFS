@@ -371,6 +371,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManagerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
+      propertyPath: m_ProtocolType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
+      propertyPath: ConnectionData.Address
+      value: 0.0.0.0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
+      propertyPath: ConnectionData.ServerListenAddress
+      value: 127.0.0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -384,6 +396,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 944719368114138626, guid: 20fb55993eaf766479f46c8fc5e41aea, type: 3}
+      propertyPath: m_ProtocolType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 944719368114138626, guid: 20fb55993eaf766479f46c8fc5e41aea, type: 3}
+      propertyPath: ConnectionData.Address
+      value: 0.0.0.0
+      objectReference: {fileID: 0}
     - target: {fileID: 1687717738417817631, guid: 20fb55993eaf766479f46c8fc5e41aea, type: 3}
       propertyPath: m_Name
       value: NetworkManagerUI
