@@ -128,12 +128,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4443103121064892963, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0221
+      objectReference: {fileID: 0}
+    - target: {fileID: 4443103121064892963, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -49.89
       objectReference: {fileID: 0}
     - target: {fileID: 4443103121064892963, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.54
+      value: 33.5322
       objectReference: {fileID: 0}
     - target: {fileID: 4443103121064892963, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
       propertyPath: m_LocalPosition.z
@@ -202,13 +206,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4270b34844bad14cb2c87704d9a6b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 10
+  acceleration: 5
   maxSpeed: 7
   turnSpeed: 120
   driftFactor: 120
   nitroBoost: 10
-  brakeForce: 0.5
+  brakeForce: 1
   skillCooldown: 3
+  stopThreshold: 10
 --- !u!50 &966167203
 Rigidbody2D:
   serializedVersion: 5
@@ -275,8 +280,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.71000016, y: 1.1600002}
+  m_Offset: {x: -0.006048054, y: -0.01165497}
+  m_Size: {x: 0.7987014, y: 1.4488772}
   m_Direction: 0
 --- !u!1 &1064902468
 GameObject:
@@ -366,7 +371,7 @@ Transform:
   m_GameObject: {fileID: 1064902468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -49.89, y: 33.54, z: -10}
+  m_LocalPosition: {x: -49.89, y: 33.5322, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1846,7 +1851,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8208297913651268821, guid: 6b43a066bf7f7e94289bdafa9682bc99, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 33.54
+      value: 33.5322
       objectReference: {fileID: 0}
     - target: {fileID: 8208297913651268821, guid: 6b43a066bf7f7e94289bdafa9682bc99, type: 3}
       propertyPath: m_LocalPosition.z
