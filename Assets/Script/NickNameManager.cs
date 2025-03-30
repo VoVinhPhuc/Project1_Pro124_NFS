@@ -41,6 +41,8 @@ public class NickNameManager : MonoBehaviour
         // Nếu không tìm thấy tài khoản, Panel vẫn bị ẩn
         Debug.LogWarning("Không tìm thấy email trong danh sách người dùng.");
         nickNamePanel.SetActive(false);
+
+        nickNameInput.onSubmit.AddListener(delegate { SaveNickName(); });
     }
 
     public void SaveNickName()

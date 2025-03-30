@@ -22,8 +22,30 @@ public class SignUpManager : MonoBehaviour
         {
             backButton.onClick.AddListener(CloseSignUpPanel);
         }
-    }
 
+        confirmPasswordInput.onSubmit.AddListener(delegate { SignUp(); });
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (emailInput.isFocused)
+            {
+                passwordInput.Select(); // Chuyển focus từ Email → Password
+            }
+            else if (passwordInput.isFocused)
+            {
+                confirmPasswordInput.Select(); // Chuyển focus từ Password → Confirm Password
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            if (confirmPasswordInput.isFocused)
+            {
+                SignUp(); // Khi đang ở ô Confirm Password và nhấn Enter, thực hiện đăng ký
+            }
+        }
+    }
     public void TogglePasswordVisibility()
     {
         bool showPassword = passwordToggle.isOn;
@@ -42,9 +64,9 @@ public class SignUpManager : MonoBehaviour
         // Xóa thông báo cũ trước khi kiểm tra
         errorText.text = "";
 
-        if (!email.EndsWith("@gmail.com"))
+        if (!(email.EndsWith("@gmail.com") || email.EndsWith("@fpt.edu.vn")))
         {
-            errorText.text = "Email phải có dạng ...@gmail.com!";
+            errorText.text = "Email phải có dạng @gmail.com hoặc @fpt.edu.vn!";
             return;
         }
 
