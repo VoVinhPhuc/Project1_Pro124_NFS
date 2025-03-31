@@ -44,7 +44,7 @@ public class NetworkManagerUI : MonoBehaviour
         }
 
         statusText.text = "Hosting Room: " + RoomID;
-
+        Debug.Log("🟢 Đang thử StartHost...");
         if (NetworkManager.Singleton.StartHost())
         {
             Debug.Log("✅ Host đã khởi động, chuyển sang Scene Room...");
