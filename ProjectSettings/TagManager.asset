@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - NPC
+  - PlayerBullet
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - Water
   - UI
   - button
-  - 
-  - 
+  - player
+  - NPC
   - 
   - 
   - 
@@ -40,6 +42,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Gun
+    uniqueID: 3928101295
+    locked: 0
+  - name: PlayerBullet
+    uniqueID: 4122980481
     locked: 0
   m_RenderingLayers:
   - Default
