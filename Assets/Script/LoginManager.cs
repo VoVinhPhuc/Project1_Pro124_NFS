@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class LoginManager : MonoBehaviour
 {
@@ -14,13 +15,44 @@ public class LoginManager : MonoBehaviour
     public GameObject forgetPasswordPanel; // Panel Forget Password
     public TMP_Text forgetPasswordErrorText;
     public static string loggedInEmail;
+    public Button loginButton;
 
     private void Start()
     {
         passwordInput.contentType = TMP_InputField.ContentType.Password;
         panelSignUp.SetActive(false); // Ẩn Panel SignUp khi mới vào game
         forgetPasswordPanel.SetActive(false);
+
+        passwordInput.onSubmit.AddListener(delegate { Login(); });
     }
+    private void Update()
+    {
+        Debug.Log("Update is running"); // Kiểm tra xem Update có chạy không
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (emailInput.isFocused)
+            {
+                passwordInput.Select();
+            }
+        }
+
+        if (emailInput.isFocused) Debug.Log("Email input is focused");
+        if (passwordInput.isFocused) Debug.Log("Password input is focused");
+
+        if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            Debug.Log("Enter pressed");
+
+            if (passwordInput.isFocused)
+            {
+                Debug.Log("Resetting focus and simulating Login button click");
+                EventSystem.current.SetSelectedGameObject(null); // Reset UI focus
+                loginButton.onClick.Invoke();
+            }
+        }
+    }
+
 
     public void TogglePasswordVisibility()
     {

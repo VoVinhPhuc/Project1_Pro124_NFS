@@ -12,6 +12,8 @@ public class ForgetPasswordManager : MonoBehaviour
     private void Start()
     {
         getPasswordButton.onClick.AddListener(CheckEmail);
+
+        emailInput.onSubmit.AddListener(delegate { CheckEmail(); });
     }
 
     public void CheckEmail()
