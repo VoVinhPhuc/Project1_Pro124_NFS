@@ -23,6 +23,17 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        int openGameMode = PlayerPrefs.GetInt("OpenGameMode", 0);
+
+        if (openGameMode == 1)
+        {
+            Debug.Log("Mở panel GameMode từ Result Scene");
+            panelPlaySelection.SetActive(true);
+            panelGameMode.SetActive(true);
+            PlayerPrefs.SetInt("OpenGameMode", 0); // Reset lại
+            PlayerPrefs.Save();
+        }
+
         panelPlaySelection.SetActive(false);
         panelGameMode.SetActive(false);
         panelPlay.SetActive(false);
@@ -30,6 +41,8 @@ public class UIManager : MonoBehaviour
         panelJoin.SetActive(false);
         panelLoading.SetActive(false);
         errorMessageText.text = ""; // Ẩn lỗi khi bắt đầu
+
+   
     }
 
     public void OpenPlaySelectionPanel()
@@ -114,6 +127,7 @@ public class UIManager : MonoBehaviour
     public void StartSinglePlayer(string sceneName)
     {
         selectedScene = sceneName;
+
         panelGameMode.SetActive(false);
         panelLoading.SetActive(true);
         StartCoroutine(LoadSceneWithProgress());
@@ -133,6 +147,8 @@ public class UIManager : MonoBehaviour
 
         SceneManager.LoadScene(selectedScene);
     }
+    
+
     public void BackToPlayPanel()
     {
         panelPlay.SetActive(true);
