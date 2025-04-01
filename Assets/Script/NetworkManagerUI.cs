@@ -36,6 +36,12 @@ public class NetworkManagerUI : MonoBehaviour
             return;
         }
 
+        if (NetworkManager.Singleton.IsClient || NetworkManager.Singleton.IsHost)
+        {
+            Debug.LogWarning("⚠️ Host hoặc Client đã chạy rồi, không thể StartHost lại!");
+            return;
+        }
+
         RoomID = PlayerPrefs.GetString("RoomID", ""); // Lấy ID từ PlayerPrefs
         if (string.IsNullOrEmpty(RoomID))
         {
@@ -78,6 +84,8 @@ public class NetworkManagerUI : MonoBehaviour
 
         if (NetworkManager.Singleton.StartClient())
         {
+            Debug.Log("📡 Yêu cầu Room ID từ Host...");
+            RoomManager.Instance.RequestRoomIdServerRpc(NetworkManager.Singleton.LocalClientId);
             SceneManager.LoadScene("Room"); // Chuyển sang scene Room
         }
         else
