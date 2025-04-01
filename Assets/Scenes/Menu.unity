@@ -119,7 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+<<<<<<< HEAD
 --- !u!1 &90933288
+=======
+--- !u!1 &129832535
+>>>>>>> parent of 19188c3 (update diep.1.3)
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,9 +131,15 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
+<<<<<<< HEAD
   - component: {fileID: 90933289}
   - component: {fileID: 90933291}
   - component: {fileID: 90933290}
+=======
+  - component: {fileID: 129832536}
+  - component: {fileID: 129832538}
+  - component: {fileID: 129832537}
+>>>>>>> parent of 19188c3 (update diep.1.3)
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1046,8 +1056,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
+=======
+  m_AnchoredPosition: {x: -5, y: -11.26}
+  m_SizeDelta: {x: -20, y: 22.52}
+>>>>>>> parent of 19188c3 (update diep.1.3)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &555436885
 GameObject:
@@ -1644,7 +1659,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
 --- !u!114 &870166238 stripped
+=======
+--- !u!1 &1614553542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614553543}
+  - component: {fileID: 1614553545}
+  - component: {fileID: 1614553544}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1614553543
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1614553542}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1309095163}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.25}
+  m_AnchorMax: {x: 1, y: 0.75}
+  m_AnchoredPosition: {x: 0, y: -11.259999}
+  m_SizeDelta: {x: 0, y: 22.52}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1614553544
+>>>>>>> parent of 19188c3 (update diep.1.3)
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 637035369954344073, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
   m_PrefabInstance: {fileID: 8959698644914466322}
@@ -4138,9 +4194,27 @@ PrefabInstance:
       propertyPath: m_Type
       value: 0
       objectReference: {fileID: 0}
+<<<<<<< HEAD
     - target: {fileID: 3412957572604865987, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_Sprite
       value: 
+=======
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.a
+      value: 0.46666667
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3117687427407531559, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+>>>>>>> parent of 19188c3 (update diep.1.3)
       objectReference: {fileID: 0}
     - target: {fileID: 3412957572604865987, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_Color.a
@@ -4259,10 +4333,17 @@ PrefabInstance:
       addedObject: {fileID: 1372563510}
     - targetCorrespondingSourceObject: {fileID: 8634684944608593283, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       insertIndex: -1
+<<<<<<< HEAD
       addedObject: {fileID: 1321636575}
     - targetCorrespondingSourceObject: {fileID: 229299424711267223, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1970869701}
+=======
+      addedObject: {fileID: 262409174}
+    - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1513257308}
+>>>>>>> parent of 19188c3 (update diep.1.3)
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
 --- !u!1660057539 &9223372036854775807
