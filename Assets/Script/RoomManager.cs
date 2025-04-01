@@ -12,10 +12,21 @@ public class RoomManager : NetworkBehaviour
 
     private NetworkList<NicknameData> playerNicknames;
 
+    public static RoomManager Instance { get; private set; }
+
     private void Awake()
     {
         Debug.Log("✅ RoomManager đã được tạo trong Scene Room!");
 
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         // ✅ KHỞI TẠO NetworkList TRONG AWAKE
         playerNicknames = new NetworkList<NicknameData>();
 
@@ -99,10 +110,25 @@ public class RoomManager : NetworkBehaviour
             Debug.LogError("[RoomManager] ❌ RequestNickNameServerRpc được gọi trên Client!");
             return;
         }
+        string uniqueNick = $"{nickname}_{clientId}"; // Đảm bảo nickname không bị trùng
+        Debug.Log($"📡 Client {clientId} gửi NickName: {uniqueNick}");
 
         AddPlayer(clientId, nickname);
     }
+    public void RequestRoomIdServerRpc(ulong clientId)
+    {
+        Debug.Log($"📡 Client {clientId} yêu cầu Room ID.");
+        SendRoomIdClientRpc(NetworkManagerUI.RoomID);
+    }
 
+    public void SendRoomIdClientRpc(string roomId)
+    {
+        Debug.Log($"✅ Nhận Room ID từ Host: {roomId}");
+        if (roomIdText != null)
+        {
+            roomIdText.text = "Room ID: " + roomId;
+        }
+    }
     private void AddPlayer(ulong clientId, string nickname)
     {
         foreach (var player in playerNicknames)
