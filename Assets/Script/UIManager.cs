@@ -52,11 +52,22 @@ public class UIManager : MonoBehaviour
 
     public void OpenPlayPanel()
     {
-        panelPlay.SetActive(true);
+        panelPlaySelection.SetActive(false);
+        panelGameMode.SetActive(false);
+        panelPlay.SetActive(false);
+        panelHost.SetActive(false);
+        panelJoin.SetActive(false);
+
+        // Bật Loading panel
+        panelLoading.SetActive(true);
+
+        // Tiến hành tải scene "SampleScene"
+        StartCoroutine(LoadSceneWithProgress("SampleScene"));
     }
 
     public void OpenHostPanel()
     {
+        panelPlaySelection.SetActive(false);
         panelPlay.SetActive(false);
         panelHost.SetActive(true);
 
@@ -118,10 +129,10 @@ public class UIManager : MonoBehaviour
         selectedScene = sceneName;
         panelGameMode.SetActive(false);
         panelLoading.SetActive(true);
-        StartCoroutine(LoadSceneWithProgress());
+        StartCoroutine(LoadSceneWithProgress(selectedScene));
     }
 
-    private IEnumerator LoadSceneWithProgress()
+    private IEnumerator LoadSceneWithProgress(string sceneName)
     {
         float duration = 5f;
         float elapsed = 0f;
@@ -133,7 +144,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
 
-        SceneManager.LoadScene(selectedScene);
+        SceneManager.LoadScene(sceneName);
     }
 >>>>>>> parent of 19188c3 (update diep.1.3)
     public void BackToPlayPanel()

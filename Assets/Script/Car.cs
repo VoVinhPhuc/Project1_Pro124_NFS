@@ -1,4 +1,6 @@
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class Car : MonoBehaviour
@@ -26,22 +28,21 @@ public class Car : MonoBehaviour
 
     void Update()
     {
-        moveInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
-        isNitro = Input.GetKey(KeyCode.LeftShift);
+            moveInput = Input.GetAxis("Vertical");
+            turnInput = Input.GetAxis("Horizontal");
+            isNitro = Input.GetKey(KeyCode.LeftShift);
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.linearVelocity *= brakeForce;
-        }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb.linearVelocity *= brakeForce;
+            }
 
-        HandleDrift();
+            HandleDrift();
 
-        if (Input.GetKeyDown(KeyCode.F) && canUseSkill)
-        {
-            StartCoroutine(UseSkill());
-        }
-            
+            if (Input.GetKeyDown(KeyCode.F) && canUseSkill)
+            {
+                StartCoroutine(UseSkill());
+            }          
     }
 
     void FixedUpdate()
