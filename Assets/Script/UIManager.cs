@@ -1,12 +1,19 @@
 ﻿using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject panelPlay;
     public GameObject panelHost;
     public GameObject panelJoin;
+    public GameObject panelPlaySelection; // Panel chọn Singleplayer hoặc Multiplayer
+    public GameObject panelGameMode; // Panel GameMode (nếu chọn Singleplayer)
+
+    public GameObject panelLoading;
+
     public GameObject myNFSPanel;   // Panel hiển thị thông tin xe
     public GameObject newsPanel;    // Panel hiển thị tin tức
     public GameObject settingsPanel; // Panel cài đặt
@@ -15,24 +22,35 @@ public class UIManager : MonoBehaviour
     public TMP_Text generatedRoomIdText;
     public TMP_InputField joinRoomIdInput;
     public TMP_Text errorMessageText; // Hiển thị lỗi nếu nhập sai ID
+    public Slider loadingSlider;
 
+    private string selectedScene;
 
-// UI Audio Settings
+    // UI Audio Settings
     public Slider musicVolumeSlider;
     public Toggle muteMusicToggle;
 
     private void Start()
     {
-<<<<<<< HEAD
-=======
+
+        int openGameMode = PlayerPrefs.GetInt("OpenGameMode", 0);
+        if (openGameMode == 1)
+        {
+            Debug.Log("Mở panel GameMode từ Result Scene");
+            panelPlaySelection.SetActive(true);
+            panelGameMode.SetActive(true);
+            PlayerPrefs.SetInt("OpenGameMode", 0); // Reset lại
+            PlayerPrefs.Save();
+        }
+
         panelPlaySelection.SetActive(false);
         panelGameMode.SetActive(false);
->>>>>>> parent of 19188c3 (update diep.1.3)
+
         panelPlay.SetActive(false);
         panelHost.SetActive(false);
         panelJoin.SetActive(false);
         errorMessageText.text = ""; // Ẩn lỗi khi bắt đầu
-<<<<<<< HEAD
+
         
         audioSettingsPopup.SetActive(false); // Ẩn popup âm thanh ban đầu
         // Load âm lượng từ PlayerPrefs
@@ -43,12 +61,16 @@ public class UIManager : MonoBehaviour
         muteMusicToggle.isOn = isMusicMuted;
 
         ApplyAudioSettings();
-=======
-    }
->>>>>>> parent of 19188c3 (update diep.1.3)
 
     }
     
+    public void OpenPlaySelectionPanel()
+    {
+        panelPlaySelection.SetActive(true);
+        panelGameMode.SetActive(false);
+        panelPlay.SetActive(false);
+    }
+
 
     public void OpenPlayPanel()
     {
@@ -63,6 +85,17 @@ public class UIManager : MonoBehaviour
 
         // Tiến hành tải scene "SampleScene"
         StartCoroutine(LoadSceneWithProgress("SampleScene"));
+    }
+    public void ChooseSinglePlayer()
+    {
+        panelGameMode.SetActive(true);
+        panelPlay.SetActive(false);
+    }
+
+    public void ChooseMultiplayer()
+    {
+        panelGameMode.SetActive(false);
+        panelPlay.SetActive(true);
     }
 
     public void OpenHostPanel()
@@ -121,12 +154,13 @@ public class UIManager : MonoBehaviour
             errorMessageText.text = "ID phòng không hợp lệ!";
         }
     }
-<<<<<<< HEAD
 
-=======
+
+
     public void StartSinglePlayer(string sceneName)
     {
         selectedScene = sceneName;
+
         panelGameMode.SetActive(false);
         panelLoading.SetActive(true);
         StartCoroutine(LoadSceneWithProgress(selectedScene));
@@ -146,7 +180,7 @@ public class UIManager : MonoBehaviour
 
         SceneManager.LoadScene(sceneName);
     }
->>>>>>> parent of 19188c3 (update diep.1.3)
+
     public void BackToPlayPanel()
     {
         panelPlay.SetActive(true);
