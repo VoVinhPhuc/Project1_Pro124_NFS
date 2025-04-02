@@ -2791,7 +2791,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2034396077}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: ChooseMultiplayer
+        m_MethodName: OpenPlayPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3035,7 +3035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
       propertyPath: ConnectionData.Address
-      value: 0.0.0.0
+      value: 127.0.0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8345530053241777600, guid: bd0bf6cbe1ff72143a4e2c91ce2dbeb0, type: 3}
       propertyPath: ConnectionData.ServerListenAddress
@@ -3060,7 +3060,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 944719368114138626, guid: 20fb55993eaf766479f46c8fc5e41aea, type: 3}
       propertyPath: ConnectionData.Address
-      value: 0.0.0.0
+      value: 127.0.0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1687717738417817631, guid: 20fb55993eaf766479f46c8fc5e41aea, type: 3}
       propertyPath: m_Name
@@ -3686,6 +3686,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 111532835}
+    - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1475597697}
     - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
@@ -3694,9 +3697,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1513257308}
-    - targetCorrespondingSourceObject: {fileID: 2624889097975946331, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 111532835}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
 --- !u!224 &8959698644914466323 stripped

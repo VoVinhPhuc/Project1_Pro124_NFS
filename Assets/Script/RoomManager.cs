@@ -115,12 +115,13 @@ public class RoomManager : NetworkBehaviour
 
         AddPlayer(clientId, nickname);
     }
+    [ServerRpc(RequireOwnership = false)]
     public void RequestRoomIdServerRpc(ulong clientId)
     {
         Debug.Log($"📡 Client {clientId} yêu cầu Room ID.");
         SendRoomIdClientRpc(NetworkManagerUI.RoomID);
     }
-
+    [ClientRpc]
     public void SendRoomIdClientRpc(string roomId)
     {
         Debug.Log($"✅ Nhận Room ID từ Host: {roomId}");
