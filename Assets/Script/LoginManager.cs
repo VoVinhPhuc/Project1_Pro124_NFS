@@ -27,7 +27,6 @@ public class LoginManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log("Update is running"); // Kiểm tra xem Update có chạy không
 
         if (Input.GetKeyDown(KeyCode.Tab))
         {
