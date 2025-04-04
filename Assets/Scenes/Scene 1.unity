@@ -313,6 +313,7 @@ MonoBehaviour:
   nitroBoost: 10
   brakeForce: 1
   skillCooldown: 3
+  stopThreshold: 10
 --- !u!61 &1281140701
 BoxCollider2D:
   m_ObjectHideFlags: 0
