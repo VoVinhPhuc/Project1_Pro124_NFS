@@ -19,4 +19,11 @@ public class PlayerBullet : MonoBehaviour
     {
         transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("NPC"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }

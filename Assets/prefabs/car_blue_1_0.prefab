@@ -12,10 +12,12 @@ GameObject:
   - component: {fileID: 2740524575995203702}
   - component: {fileID: 6822801619694836554}
   - component: {fileID: 5068325746735515765}
-  - component: {fileID: 8720664362787182313}
-  m_Layer: 0
+  - component: {fileID: 6195087229030960619}
+  - component: {fileID: 7917182028504126348}
+  - component: {fileID: 1695632117260181}
+  m_Layer: 8
   m_Name: car_blue_1_0
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +118,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &5068325746735515765
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -154,7 +156,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0037780397, y: 0.003778457}
   m_Size: {x: 0.8082242, y: 1.4989035}
   m_Direction: 0
---- !u!114 &8720664362787182313
+--- !u!114 &6195087229030960619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,7 +165,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 4130801553659062355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a80177b0bfb34f4d9bd3d2f9d0da127, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f109b60e5895d34082c3ca3933e90ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalLaps: 3
+--- !u!114 &7917182028504126348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130801553659062355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 324f6d83a7d21414893122502e15b80a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -200,8 +215,46 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  speed: 6
-  maxTurnSpeed: 120
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  speed: 6.5
+  maxTurnSpeed: 180
   brakeFactor: 1
   acceleration: 5
-  turnSensitivity: 10
+  turnSensitivity: 50
+  collisionForce: 1
+  avoidanceForce: 10
+--- !u!114 &1695632117260181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130801553659062355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31b20de661add445ba2d2e035860cb9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lives: 3
