@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using TMPro;
 
 public class NetworkUIManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class NetworkUIManager : MonoBehaviour
     public Button hostButton;
     public Button clientButton;
     public Button serverButton;
+
+    public TMP_InputField ipAddressInput;
 
     private void Start()
     {
@@ -24,6 +27,15 @@ public class NetworkUIManager : MonoBehaviour
 
     void StartClient()
     {
+        string hostIP = ipAddressInput.text; // Lấy IP nhập từ UI
+        if (string.IsNullOrEmpty(hostIP))
+        {
+            hostIP = "127.0.0.1"; // Mặc định nếu không nhập
+        }
+
+        NetworkManager.Singleton.GetComponent<Unity.Netcode.Transports.UTP.UnityTransport>().SetConnectionData(
+            hostIP, 7777); // Cổng mặc định của NGO
+
         NetworkManager.Singleton.StartClient();
         HidePanel();
     }

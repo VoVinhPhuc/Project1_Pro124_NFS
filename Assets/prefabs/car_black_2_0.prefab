@@ -119,7 +119,7 @@ GameObject:
   - component: {fileID: 7056641312947914484}
   - component: {fileID: 3440586593928597698}
   - component: {fileID: -2579384876359642945}
-  - component: {fileID: 5176934155757864221}
+  - component: {fileID: 6808783921149027195}
   m_Layer: 7
   m_Name: car_black_2_0
   m_TagString: Player
@@ -210,10 +210,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4270b34844bad14cb2c87704d9a6b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 5
-  maxSpeed: 7
-  turnSpeed: 120
-  driftFactor: 120
+  acceleration: 10
+  maxSpeed: 5
+  turnSpeed: 150
+  driftFactor: 80
   nitroBoost: 10
   brakeForce: 1
   skillCooldown: 3
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2962806451
+  GlobalObjectIdHash: 323487474
   InScenePlacedSourceGlobalObjectIdHash: 3670988416
   DeferredDespawnTick: 0
   Ownership: 1
@@ -280,7 +280,7 @@ MonoBehaviour:
   AutoObjectParentSync: 1
   SyncOwnerTransformWhenParented: 1
   AllowOwnerToParent: 0
---- !u!50 &5176934155757864221
+--- !u!50 &6808783921149027195
 Rigidbody2D:
   serializedVersion: 5
   m_ObjectHideFlags: 0
