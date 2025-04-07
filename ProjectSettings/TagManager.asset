@@ -7,6 +7,12 @@ TagManager:
   - NPC
   - PlayerBullet
   - FinishLine
+<<<<<<< Updated upstream
+=======
+  - Trap
+  - TrapBanana
+  - Checkpoint
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX
@@ -17,7 +23,7 @@ TagManager:
   - button
   - player
   - NPC
-  - 
+  - CountdownUI
   - 
   - 
   - 
@@ -50,5 +56,20 @@ TagManager:
   - name: PlayerBullet
     uniqueID: 4122980481
     locked: 0
+<<<<<<< Updated upstream
+=======
+  - name: Trap
+    uniqueID: 2992069793
+    locked: 0
+  - name: MiniMap
+    uniqueID: 3158054837
+    locked: 0
+  - name: Player
+    uniqueID: 3949915713
+    locked: 0
+  - name: NPC
+    uniqueID: 2966856715
+    locked: 0
+>>>>>>> Stashed changes
   m_RenderingLayers:
   - Default

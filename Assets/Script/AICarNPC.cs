@@ -86,18 +86,50 @@ public class NPCRacerAI : MonoBehaviour
     public float turnSensitivity = 5f;
     public float collisionForce = 5f; // Lực đẩy lùi khi va chạm
     public float avoidanceForce = 3f; // Lực tránh va chạm
+    public float rotationSpeed = 360f;
+    private bool isSpinning = false;
+    private bool isStunned = false;
     
+    private bool isWaitingAtStart = true;
     private Rigidbody2D rb;
     private bool isColliding = false;
+
+    [Header("Skill Settings")]
+    public GameObject trapBananaPrefab;
+    private float timeSinceStart = 0f;
+    public float skillUsageDelay = 30f; // Không xài skill trong 30 giây đầu
+
+    public float skillCooldown = 15f;
+    private float skillTimer = 0f;
+    private bool canUseSkill = true;
+
+    [Header("NPC Health Settings")]
+    public int maxHealth = 3;
+    private int currentHealth;
+    private bool isDead = false;
+    public float respawnDelay = 3f;
+    private Vector2 spawnPoint;
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(WaitBeforeStart(4f)); // NPC đứng yên 4 giây
+
+        skillTimer = skillCooldown;
+        currentHealth = maxHealth;
+        spawnPoint = transform.position;
+    }
+    void Update()
+    {
+        if (isWaitingAtStart || isDead) return;
+        timeSinceStart += Time.deltaTime;
+
+        HandleSkillAutoUse();
     }
 
     void FixedUpdate()
     {
-        if (waypoints.Length == 0 || isColliding) return;
+        if (waypoints.Length == 0 || isColliding || isWaitingAtStart) return;
         
         Transform targetWaypoint = waypoints[currentWaypointIndex];
         Vector2 direction = (targetWaypoint.position - transform.position).normalized;
@@ -115,15 +147,59 @@ public class NPCRacerAI : MonoBehaviour
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
     }
+    void HandleSkillAutoUse()
+    {
+        if (timeSinceStart < skillUsageDelay) return;
+
+        if (canUseSkill)
+        {
+            UseSkill();
+        }
+        else
+        {
+            skillTimer -= Time.deltaTime;
+            if (skillTimer <= 0f)
+            {
+                canUseSkill = true;
+                skillTimer = skillCooldown;
+            }
+        }
+    }
+    void UseSkill()
+    {
+        if (trapBananaPrefab != null)
+        {
+            Vector3 spawnPosition = transform.position - transform.up * 1.5f;
+            GameObject trap = Instantiate(trapBananaPrefab, spawnPosition, Quaternion.identity);
+            StartCoroutine(DestroyTrapAfterTime(trap, 90f));
+        }
+
+        canUseSkill = false;
+    }
+
+    IEnumerator DestroyTrapAfterTime(GameObject trap, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (trap != null) Destroy(trap);
+    }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+<<<<<<< Updated upstream
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Player"))
         {
             isColliding = true;
             Vector2 pushDirection = (transform.position - collision.transform.position).normalized;
             rb.AddForce(pushDirection * collisionForce, ForceMode2D.Impulse);
             StartCoroutine(RecoverFromCollision());
+=======
+        
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("NPC"))
+        {
+            rb.linearVelocity = Vector2.zero; // Dừng di chuyển ngay lập tức
+            rb.angularVelocity = 0f; // Ngăn quay vòng
+            StartCoroutine(RecoverFromCollision(0.3f)); // Đứng yên khi va chạm Player hoặc NPC
+>>>>>>> Stashed changes
         }
     }
 
@@ -132,6 +208,11 @@ public class NPCRacerAI : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isColliding = false;
     }
+    IEnumerator WaitBeforeStart(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        isWaitingAtStart = false;
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -139,6 +220,53 @@ public class NPCRacerAI : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (other.gameObject.CompareTag("TrapBanana") && !isStunned)
+        {
+            // rb.linearVelocity = Vector2.zero;
+            // StartCoroutine(RecoverFromCollision(2f)); // Đứng yên 2s khi va chạm "Trap"
+            StartCoroutine(SpinAndStun());
+        }
+    }
+    public void TakeDamage(int amount)
+    {
+        if (isDead) return;
+
+        currentHealth -= amount;
+        if (currentHealth <= 0)
+        {
+            StartCoroutine(RespawnNPC());
+        }
+    }
+    IEnumerator RespawnNPC()
+    {
+        isDead = true;
+        rb.linearVelocity = Vector2.zero;
+        rb.angularVelocity = 0f;
+        gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(respawnDelay);
+
+        transform.position = spawnPoint;
+        currentHealth = maxHealth;
+        gameObject.SetActive(true);
+        isDead = false;
+    }
+    IEnumerator SpinAndStun()
+    {
+        isStunned = true;
+        //movementScript.enabled = false; // Tắt điều khiển xe
+        rb.linearVelocity = Vector2.zero;
+        float timer = 0f;
+
+        while (timer < 3f)
+        {
+            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        //movementScript.enabled = true;
+        isStunned = false;
     }
 
     void OnDrawGizmos()
@@ -155,7 +283,7 @@ public class NPCRacerAI : MonoBehaviour
         for (int i = 0; i < waypoints.Length; i++)
         {
             Gizmos.color = (i == currentWaypointIndex) ? Color.red : Color.yellow;
-            Gizmos.DrawSphere(waypoints[i].position, 0.3f);
+            Gizmos.DrawSphere(waypoints[i].position, 0.5f);
         }
     }
 }

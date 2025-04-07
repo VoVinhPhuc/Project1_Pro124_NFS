@@ -412,7 +412,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 140688796}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2034396077}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: StartSinglePlayer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayWith1NPC
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &140688796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1746,7 +1758,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1390840872}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2034396077}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: StartSinglePlayer
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: PlayWith2NPC
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1390840872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3446,6 +3470,17 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1559514552}
+<<<<<<< Updated upstream
+=======
+    - target: {fileID: 1360285218406233031, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360285218406233031, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.000058652455
+      objectReference: {fileID: 0}
+>>>>>>> Stashed changes
     - target: {fileID: 1484072618884148646, guid: 5d718de8f59f54443978be26e3b007ac, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
