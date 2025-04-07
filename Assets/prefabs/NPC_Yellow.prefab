@@ -12,9 +12,7 @@ GameObject:
   - component: {fileID: 5634800492393944207}
   - component: {fileID: 7837626262450959669}
   - component: {fileID: 4569675517588629218}
-  - component: {fileID: 5560986922759817871}
-  - component: {fileID: 7556369987096151666}
-  - component: {fileID: 6993609629413462331}
+  - component: {fileID: 5051262348710737276}
   m_Layer: 0
   m_Name: NPC_Yellow
   m_TagString: NPC
@@ -156,7 +154,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5560986922759817871
+--- !u!114 &5051262348710737276
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,20 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2181701591788547019}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f109b60e5895d34082c3ca3933e90ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalLaps: 3
---- !u!114 &7556369987096151666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2181701591788547019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324f6d83a7d21414893122502e15b80a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a80177b0bfb34f4d9bd3d2f9d0da127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -198,63 +183,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 6.1
-  maxTurnSpeed: 190
-  brakeFactor: 0.5
+  speed: 5.9
+  maxTurnSpeed: 155
+  brakeFactor: 0.9
   acceleration: 5
-  turnSensitivity: 50
-  collisionForce: 1
-  avoidanceForce: 10
---- !u!114 &6993609629413462331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2181701591788547019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31b20de661add445ba2d2e035860cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 3
+  turnSensitivity: 15

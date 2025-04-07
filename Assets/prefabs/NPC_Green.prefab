@@ -12,12 +12,10 @@ GameObject:
   - component: {fileID: 1993620805278357842}
   - component: {fileID: 6425423171908305160}
   - component: {fileID: 1176450614636144520}
-  - component: {fileID: 4713329810150766804}
-  - component: {fileID: 1156188678163624846}
-  - component: {fileID: 1604986739966183915}
+  - component: {fileID: 5836881075690352512}
   m_Layer: 0
   m_Name: NPC_Green
-  m_TagString: NPC
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +154,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4713329810150766804
+--- !u!114 &5836881075690352512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -165,20 +163,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4091942066490069674}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f109b60e5895d34082c3ca3933e90ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  totalLaps: 3
---- !u!114 &1156188678163624846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4091942066490069674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 324f6d83a7d21414893122502e15b80a, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a80177b0bfb34f4d9bd3d2f9d0da127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waypoints:
@@ -231,30 +216,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  speed: 6
-  maxTurnSpeed: 210
-  brakeFactor: 0.5
-  acceleration: 5
-  turnSensitivity: 5
-  collisionForce: 1
-  avoidanceForce: 10
---- !u!114 &1604986739966183915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4091942066490069674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d31b20de661add445ba2d2e035860cb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lives: 3
+  speed: 6.3
+  maxTurnSpeed: 122
+  brakeFactor: 1
+  acceleration: 5.2
+  turnSensitivity: 10

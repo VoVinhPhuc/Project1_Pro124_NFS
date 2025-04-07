@@ -62,28 +62,15 @@ public class Car : MonoBehaviour
         }
     }
 
-    // void ApplySteering()
-    // {
-    //     float minSpeedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
-    //     rb.angularVelocity = -turnInput * turnSpeed * minSpeedFactor;
-    // }
-
     void ApplySteering()
-{
-    // Tạo một hệ số giảm tốc độ khi xe di chuyển chậm
-    float speedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
-    // Thêm một hệ số ma sát để xe quay mượt mà hơn
-    float steeringFactor = Mathf.Lerp(1f, 0.5f, speedFactor); // Tốc độ càng thấp thì quay càng dễ
-
-    rb.angularVelocity = -turnInput * turnSpeed * steeringFactor;
-}
-
-
-  void HandleDrift()
-{
-    if (moveInput > 0) // Khi di chuyển về phía trước (W)
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)) // Nhấn A hoặc D để drift
+        float minSpeedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
+        rb.angularVelocity = -turnInput * turnSpeed * minSpeedFactor;
+    }
+
+    void HandleDrift()
+    {
+        if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
         {
             isDrifting = true;
         }
@@ -91,38 +78,10 @@ public class Car : MonoBehaviour
         {
             isDrifting = false;
         }
-    }
-    else if (moveInput < 0) // Khi di chuyển lùi (S)
-    {
-        if (Input.GetKey(KeyCode.A)) // Nhấn A để drift sang trái khi lùi
-        {
-            isDrifting = true;
-            rb.angularVelocity = turnSpeed * 1.5f; // Quay trái nhanh hơn khi lùi
-        }
-        else if (Input.GetKey(KeyCode.D)) // Nhấn D để drift sang phải khi lùi
-        {
-            isDrifting = true;
-            rb.angularVelocity = -turnSpeed * 1.5f; // Quay phải nhanh hơn khi lùi
-        }
-        else
-        {
-            isDrifting = false;
-        }
-    }
-    else
-    {
-        isDrifting = false;
-    }
 
-    if (isDrifting)
-    {
-        // Điều chỉnh tốc độ drift
-        rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, transform.up * rb.linearVelocity.magnitude, driftFactor * Time.deltaTime);
+        if (isDrifting)
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, transform.up * rb.linearVelocity.magnitude, driftFactor * Time.deltaTime);
     }
-}
-
-
-
     void ApplyStop()
     {
         if (moveInput == 0 && rb.linearVelocity.magnitude < stopThreshold)
