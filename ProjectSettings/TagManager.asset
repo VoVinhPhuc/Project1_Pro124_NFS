@@ -7,6 +7,9 @@ TagManager:
   - NPC
   - PlayerBullet
   - FinishLine
+  - TrapBanana
+  - Checkpoint
+  - TrapSlow
   layers:
   - Default
   - TransparentFX
