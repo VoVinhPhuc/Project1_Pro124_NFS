@@ -684,9 +684,17 @@ PrefabInstance:
       value: 372.33002
       objectReference: {fileID: 0}
     - target: {fileID: 1833246121160214589, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1833246121160214589, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: c6fbb6a75436fb6429217eca79f2b6f7, type: 2}
+    - target: {fileID: 1833246121160214589, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 1833246121160214589, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
       propertyPath: m_sharedMaterial
       value: 
@@ -1015,6 +1023,14 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278913803
       objectReference: {fileID: 0}
+    - target: {fileID: 6489686288283951525, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 36e1ba904ebd1d742bd5795818e26bb0, type: 3}
+    - target: {fileID: 6489686288283951525, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 36e1ba904ebd1d742bd5795818e26bb0, type: 3}
     - target: {fileID: 6569006770965949076, guid: 306d043f64d3b404d997a31e8a224b60, type: 3}
       propertyPath: m_fontAsset
       value: 

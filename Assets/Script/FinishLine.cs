@@ -1,24 +1,26 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LapCounter : MonoBehaviour
 {
-    public int totalLaps = 3;  // Số vòng cần hoàn thành
-    private int currentLap = 0; // Số vòng hiện tại
-    private bool canCountLap = true; // Kiểm soát việc tăng số vòng
+    public int totalLaps = 3;
+    private int currentLap = 0;
+    private bool canCountLap = true;
+    public bool isPlayer = false;
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("FinishLine") && canCountLap)
         {
             currentLap++;
-            Debug.Log("Lap: " + currentLap);
+            Debug.Log($"{gameObject.name} Lap: {currentLap}");
 
             if (currentLap >= totalLaps)
             {
-                Debug.Log("Race Finished!");
-
                 RaceFinished();
             }
+
             canCountLap = false;
         }
     }
@@ -27,13 +29,19 @@ public class LapCounter : MonoBehaviour
     {
         if (other.CompareTag("FinishLine"))
         {
-            canCountLap = true; 
+            canCountLap = true;
         }
     }
 
     void RaceFinished()
     {
-        Debug.Log("Bạn đã về đích!");
+        if (isPlayer)
+        {
+            GameManager.Instance.ShowVictoryPanel();
+        }
+        else
+        {
+            GameManager.Instance.NPCFinished(gameObject);
+        }
     }
 }
-

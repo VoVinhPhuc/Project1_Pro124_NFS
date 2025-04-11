@@ -25,12 +25,12 @@ public class ForgetPasswordManager : MonoBehaviour
         {
             if (user.email == email)
             {
-                resultText.text = "Mật khẩu của bạn là: " + user.password;
+                resultText.text = "Your Password Is: " + user.password;
                 return;
             }
         }
 
-        resultText.text = "Email không tồn tại!";
+        resultText.text = "Cant Find Your Email!";
     }
 
     public void ClosePanel()

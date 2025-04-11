@@ -51,13 +51,13 @@ public class NickNameManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(nickName))
         {
-            messageText.text = "NickName không được để trống!";
+            messageText.text = "NickName can not be null!";
             return;
         }
 
         if (UserDataManager.IsNickNameTaken(nickName))
         {
-            messageText.text = "NickName đã tồn tại!";
+            messageText.text = "NickName existed!";
             return;
         }
 
@@ -68,7 +68,7 @@ public class NickNameManager : MonoBehaviour
         PlayerPrefs.Save(); // Đảm bảo giá trị được lưu ngay lập tức
         Debug.Log("NickName đã lưu: " + nickName);
 
-        messageText.text = "NickName đã lưu!";
+        messageText.text = "NickName saved!";
         nickNamePanel.SetActive(false); // Ẩn panel sau khi lưu
     }
 }

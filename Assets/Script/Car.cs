@@ -1,121 +1,86 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class Car : MonoBehaviour
 {
-    [Header("Move Settings")]
-    public float acceleration = 5f;
-    public float maxSpeed = 7f;
-    public float turnSpeed = 120f;
-    public float driftFactor = 120f;
-    public float brakeForce = 1f;
-    public float stopThreshold = 10f;
+    public float acceleration = 5f; // 5
+    public float maxSpeed = 7f; // 7 
+    public float turnSpeed = 120f; // 120 
+    public float driftFactor = 120f; // 120 
+    public float nitroBoost = 10f; // 10 
+    public float brakeForce = 1f; // 1 
+    public float skillCooldown = 3f; // 3
+    public float stopThreshold = 10f; // 10 
 
-    [Header("Trap")]
-    private bool isSlowed = false;
-    public float slowDuration = 3f;
-    public float rotationSpeed = 360f; // tốc độ xoay
-    private bool isSpinning = false;
-    private bool isStunned = false;
-
-
-    [Header("Health Settings")]
-    public int maxHealth = 3;
-    private int currentHealth;
-    public TMP_Text healthText;
-    public float respawnDelay = 2f;
-    private bool isKnockedBack = false;
-
-
-    [Header("Checkpoint Settings")]
-    public GameObject checkpointPrefab;
-    public float checkpointSpacing = 10f;
-    public float checkpointCooldown = 10f;
-
-    private Transform lastCheckpoint;
-    private Vector2 lastCheckpointPos;
-    private float lastCheckpointTime = 0f;
-    private float distanceSinceLastCheckpoint = 0f;
-
-
-    [Header("Skill Settings")]
-    public float skillCooldown = 40f;
-    public Image skillImage;
-    public TMP_Text cooldownText;
-    public GameObject trapBananaPrefab;
-    private bool canUseSkill = true;
-
-    [Header("Boost Settings")]
-    public float boostedMaxSpeed = 8f;
-    private float defaultMaxSpeed;
-
-    [Header("Nitro Slider")]
-    public Slider nitroSlider;
-    public float sliderDecreaseSpeed = 20f;
-    public float sliderRecoverRate = 5f;
-    public Image sliderFillImage;
-    public Color normalColor = Color.green;
-    public Color warningColor = Color.red;
-    public float warningThreshold = 20f;
-
-    // Internal Variables
     private Rigidbody2D rb;
     private float moveInput;
     private float turnInput;
     private bool isDrifting;
-    private bool isWaitingAtStart = true;
-    private bool isFlashing = false;
-    private Coroutine flashCoroutine;
+    private bool isNitro;
+    private bool canUseSkill = true;
+
+    private AudioSource engineAudioSource;
+    public AudioClip engineIdleClip;
+    public AudioClip engineAccelerateClip;
 
     void Start()
     {
+        engineAudioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
-        defaultMaxSpeed = maxSpeed;
-        currentHealth = maxHealth;
-        UpdateHealthUI();
-
-        SpawnCheckpoint(transform.position);
-        lastCheckpointPos = transform.position;
-
-        StartCoroutine(WaitBeforeStart(4f));
     }
 
     void Update()
     {
-        moveInput = Input.GetAxis("Vertical");
-        turnInput = Input.GetAxis("Horizontal");
+            if (!TrafficLightController.canStartRace)
+            return;
 
-        if (Input.GetKey(KeyCode.Space))
-        {
-            rb.linearVelocity *= brakeForce;
-        }
+            HandleEngineSound();
 
-        HandleDrift();
+            moveInput = Input.GetAxis("Vertical");
+            turnInput = Input.GetAxis("Horizontal");
+            isNitro = Input.GetKey(KeyCode.LeftShift);
 
-        if (Input.GetKeyDown(KeyCode.F) && canUseSkill)
-        {
-            StartCoroutine(UseSkill());
-            SpawnTrapBanana();
-        }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                rb.linearVelocity *= brakeForce;
+            }
 
-        HandleSkillSlider();
+            HandleDrift();
 
-        maxSpeed = Input.GetKey(KeyCode.LeftShift) ? boostedMaxSpeed : defaultMaxSpeed;
+            if (Input.GetKeyDown(KeyCode.F) && canUseSkill)
+            {
+                StartCoroutine(UseSkill());
+            }          
     }
-
+    void HandleEngineSound()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (engineAudioSource.clip != engineAccelerateClip)
+            {
+                engineAudioSource.clip = engineAccelerateClip;
+                engineAudioSource.loop = true;
+                engineAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (engineAudioSource.clip != engineIdleClip)
+            {
+                engineAudioSource.clip = engineIdleClip;
+                engineAudioSource.loop = true;
+                engineAudioSource.Play();
+            }
+        }
+    }
 
     void FixedUpdate()
     {
-        if (isWaitingAtStart) return;
-
         ApplyEngineForce();
         ApplySteering();
         ApplyStop();
-
-        HandleAutoCheckpoint();
     }
 
     void ApplyEngineForce()
@@ -123,17 +88,31 @@ public class Car : MonoBehaviour
         float currentSpeed = rb.linearVelocity.magnitude;
         if (currentSpeed < maxSpeed || moveInput < 0)
         {
-            rb.AddForce(transform.up * moveInput * acceleration);
+            float speedFactor = isNitro ? nitroBoost : 1f;
+            rb.AddForce(transform.up * moveInput * acceleration * speedFactor);
         }
     }
 
     void ApplySteering()
     {
-       float speedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
-        float steeringFactor = Mathf.Lerp(1f, 0.5f, speedFactor);
-        rb.angularVelocity = -turnInput * turnSpeed * steeringFactor;
+        float minSpeedFactor = Mathf.Clamp01(rb.linearVelocity.magnitude / maxSpeed);
+        rb.angularVelocity = -turnInput * turnSpeed * minSpeedFactor;
     }
 
+    void HandleDrift()
+    {
+        if (Input.GetKey(KeyCode.W) && (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D)))
+        {
+            isDrifting = true;
+        }
+        else
+        {
+            isDrifting = false;
+        }
+
+        if (isDrifting)
+            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, transform.up * rb.linearVelocity.magnitude, driftFactor * Time.deltaTime);
+    }
     void ApplyStop()
     {
         if (moveInput == 0 && rb.linearVelocity.magnitude < stopThreshold)
@@ -143,293 +122,11 @@ public class Car : MonoBehaviour
         }
     }
 
-    void HandleDrift()
-    {
-        if (moveInput != 0)
-        {
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
-            {
-                isDrifting = true;
-            }
-            else
-            {
-                isDrifting = false;
-            }
-        }
-        else
-        {
-            isDrifting = false;
-        }
-
-        if (moveInput < 0)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                rb.angularVelocity = turnSpeed * 1.5f;
-                isDrifting = true;
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                rb.angularVelocity = -turnSpeed * 1.5f;
-                isDrifting = true;
-            }
-        }
-
-        if (isDrifting)
-        {
-            rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, transform.up * rb.linearVelocity.magnitude, driftFactor * Time.deltaTime);
-        }
-    }
-
-    void HandleSkillSlider()
-    {
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            nitroSlider.value -= sliderDecreaseSpeed * Time.deltaTime;
-        }
-        else if (nitroSlider.value < nitroSlider.maxValue)
-        {
-            nitroSlider.value += sliderRecoverRate * Time.deltaTime;
-            nitroSlider.value = Mathf.Min(nitroSlider.value, nitroSlider.maxValue);
-        }
-
-        nitroSlider.value = Mathf.Max(nitroSlider.value, nitroSlider.minValue);
-
-        if (sliderFillImage != null)
-        {
-            if (nitroSlider.value <= warningThreshold)
-            {
-                if (!isFlashing)
-                {
-                    flashCoroutine = StartCoroutine(FlashWarningColor());
-                    isFlashing = true;
-                }
-            }
-            else
-            {
-                if (isFlashing)
-                {
-                    StopCoroutine(flashCoroutine);
-                    sliderFillImage.color = normalColor;
-                    isFlashing = false;
-                }
-            }
-        }
-    }
-    void HandleAutoCheckpoint()
-    {
-        float distanceMoved = Vector2.Distance(rb.position, lastCheckpointPos);
-
-    // Nếu di chuyển đủ xa và đã qua thời gian cooldown
-        if (distanceMoved >= checkpointSpacing && Time.time - lastCheckpointTime >= checkpointCooldown)
-        {
-            SpawnCheckpoint(rb.position);
-            lastCheckpointPos = rb.position;
-            lastCheckpointTime = Time.time;
-        }
-    }
-
-
-    void SpawnCheckpoint(Vector2 position)
-    {
-        if (checkpointPrefab != null)
-        {
-            GameObject checkpoint = Instantiate(checkpointPrefab, position, Quaternion.identity);
-            checkpoint.tag = "Checkpoint";
-
-            // Đảm bảo có collider và trigger
-            Collider2D col = checkpoint.GetComponent<Collider2D>();
-            if (col != null)
-            {
-                col.isTrigger = true;
-            }
-        }
-    }
-
-
-
-    void UpdateHealthUI()
-    {
-        if (healthText != null)
-        healthText.text = currentHealth.ToString();
-    }
-
-    void TakeDamage()
-    {
-        if (isKnockedBack || isWaitingAtStart) 
-            return;
-
-        currentHealth--;
-        UpdateHealthUI();
-
-        if (currentHealth <= 0)
-        {
-            StartCoroutine(HandleRespawn());
-        }
-    }
-    IEnumerator HandleRespawn()
-    {
-        isKnockedBack = true;
-
-        if (lastCheckpoint != null)
-        {
-            rb.position = lastCheckpoint.position;
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-        }
-
-        yield return new WaitForSeconds(respawnDelay);
-
-        currentHealth = maxHealth;
-        UpdateHealthUI();
-        isKnockedBack = false;
-    }
-
-
-    IEnumerator FlashWarningColor()
-    {
-        while (true)
-        {
-            sliderFillImage.color = warningColor;
-            yield return new WaitForSeconds(0.2f);
-            sliderFillImage.color = normalColor;
-            yield return new WaitForSeconds(0.2f);
-        }
-    }
-
     IEnumerator UseSkill()
     {
         canUseSkill = false;
         Debug.Log("Skill Used!");
-
-        if (skillImage != null)
-        {
-            var color = skillImage.color;
-            color.a = 0.3f;
-            skillImage.color = color;
-        }
-
-        float remaining = skillCooldown;
-        while (remaining > 0f)
-        {
-            if (cooldownText != null)
-                cooldownText.text = Mathf.CeilToInt(remaining).ToString();
-            remaining -= Time.deltaTime;
-            yield return null;
-        }
-
-        if (cooldownText != null)
-            cooldownText.text = "";
-
-        if (skillImage != null)
-        {
-            var color = skillImage.color;
-            color.a = 1f;
-            skillImage.color = color;
-        }
-
+        yield return new WaitForSeconds(skillCooldown);
         canUseSkill = true;
     }
-
-    IEnumerator SlowDownTemporarily()
-    {
-        isSlowed = true;
-
-        // float originalSpeed = defaultMaxSpeed;
-        // defaultMaxSpeed = originalSpeed / (2f);
-        float originalSpeed = defaultMaxSpeed;
-        defaultMaxSpeed = 1f;
-
-        // Nếu đang boost, giới hạn luôn cả tốc độ boost
-        float originalBoost = boostedMaxSpeed;
-        boostedMaxSpeed = boostedMaxSpeed / (2f);
-
-        yield return new WaitForSeconds(slowDuration);
-
-        // Khôi phục tốc độ
-        defaultMaxSpeed = originalSpeed;
-        boostedMaxSpeed = originalBoost;
-
-        isSlowed = false;
-    }
-
-    void SpawnTrapBanana()
-    {
-        if (trapBananaPrefab != null)
-        {
-            Vector3 spawnPosition = transform.position - transform.up * 2f;
-            GameObject trap = Instantiate(trapBananaPrefab, spawnPosition, Quaternion.identity);
-
-            TrapBanana trapScript = trap.GetComponent<TrapBanana>();
-            if (trapScript != null)
-            {
-                trapScript.owner = this.gameObject;
-            }
-
-            StartCoroutine(DestroyTrapAfterTime(trap, 60f));
-        }
-    }
-
-    IEnumerator DestroyTrapAfterTime(GameObject trap, float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        if (trap != null) Destroy(trap);
-    }
-
-    IEnumerator WaitBeforeStart(float waitTime)
-    {
-        yield return new WaitForSeconds(waitTime);
-        isWaitingAtStart = false;
-    }
-
-    
-
-
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("NPC"))
-        {
-            TakeDamage();
-        }
-    }
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.CompareTag("Checkpoint"))
-        {
-            lastCheckpoint = other.transform;
-        }
-        else if (other.CompareTag("TrapSlow"))
-        {
-            if (!isSlowed)
-                StartCoroutine(SlowDownTemporarily());
-        }
-        else if (other.CompareTag("TrapBanana") && !isStunned)
-        {
-            TrapBanana trapScript = other.GetComponent<TrapBanana>();
-    
-            // Nếu trap này là của chính mình thì bỏ qua
-            if (trapScript != null && trapScript.owner == this.gameObject)
-            {
-                return;
-            }
-            StartCoroutine(SpinAndStun());
-        }
-    }
-    IEnumerator SpinAndStun()
-    {
-        isStunned = true;
-        rb.linearVelocity = Vector2.zero;
-        float timer = 0f;
-
-        while (timer < 3f)
-        {
-            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
-            timer += Time.deltaTime;
-            yield return null;
-        }
-        isStunned = false;
-    }
-
-
 }
