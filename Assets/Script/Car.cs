@@ -21,13 +21,23 @@ public class Car : MonoBehaviour
     private bool isNitro;
     private bool canUseSkill = true;
 
+    private AudioSource engineAudioSource;
+    public AudioClip engineIdleClip;
+    public AudioClip engineAccelerateClip;
+
     void Start()
     {
+        engineAudioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
+            if (!TrafficLightController.canStartRace)
+            return;
+
+            HandleEngineSound();
+
             moveInput = Input.GetAxis("Vertical");
             turnInput = Input.GetAxis("Horizontal");
             isNitro = Input.GetKey(KeyCode.LeftShift);
@@ -43,6 +53,27 @@ public class Car : MonoBehaviour
             {
                 StartCoroutine(UseSkill());
             }          
+    }
+    void HandleEngineSound()
+    {
+        if (Input.GetKey(KeyCode.W))
+        {
+            if (engineAudioSource.clip != engineAccelerateClip)
+            {
+                engineAudioSource.clip = engineAccelerateClip;
+                engineAudioSource.loop = true;
+                engineAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (engineAudioSource.clip != engineIdleClip)
+            {
+                engineAudioSource.clip = engineIdleClip;
+                engineAudioSource.loop = true;
+                engineAudioSource.Play();
+            }
+        }
     }
 
     void FixedUpdate()

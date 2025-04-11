@@ -75,8 +75,8 @@ public class LoginManager : MonoBehaviour
                 return;
             }
         }
-
-        messageText.text = "Email hoặc mật khẩu không đúng!";
+        
+        messageText.text = "Email or Password is not correct!";
     }
 
     public void OpenSignUpPanel()

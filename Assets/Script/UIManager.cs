@@ -151,7 +151,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            errorMessageText.text = "ID phòng không hợp lệ!";
+            errorMessageText.text = "ID is not correct!";
         }
     }
 

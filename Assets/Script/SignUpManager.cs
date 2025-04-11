@@ -66,13 +66,13 @@ public class SignUpManager : MonoBehaviour
 
         if (!(email.EndsWith("@gmail.com") || email.EndsWith("@fpt.edu.vn")))
         {
-            errorText.text = "Email phải có dạng @gmail.com hoặc @fpt.edu.vn!";
+            errorText.text = "Email must have @gmail.com or @fpt.edu.vn!";
             return;
         }
 
         if (password != confirmPassword)
         {
-            errorText.text = "2 mật khẩu không trùng khớp!";
+            errorText.text = "Passwords didnt match!";
             return;
         }
 
@@ -81,7 +81,7 @@ public class SignUpManager : MonoBehaviour
         {
             if (user.email == email)
             {
-                errorText.text = "Email đã tồn tại!";
+                errorText.text = "Email existed !";
                 return;
             }
         }
@@ -91,7 +91,7 @@ public class SignUpManager : MonoBehaviour
         UserDataManager.SaveUsers(userList);
 
         // Hiển thị thông báo thành công và tự động đóng panel sau 1 giây
-        errorText.text = "Đăng ký thành công!";
+        errorText.text = "SUCCESS!";
         StartCoroutine(ClosePanelAfterDelay(1f));
     }
 

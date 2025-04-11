@@ -97,6 +97,9 @@ public class NPCRacerAI : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!TrafficLightController.canStartRace)
+            return;
+
         if (waypoints.Length == 0 || isColliding) return;
         
         Transform targetWaypoint = waypoints[currentWaypointIndex];
