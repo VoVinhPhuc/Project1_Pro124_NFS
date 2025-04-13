@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.IO;
 using System.Collections.Generic;
 
@@ -8,6 +8,7 @@ public class UserData
     public string email;
     public string password;
     public string nickName;
+    public int coins;
 }
 
 [System.Serializable]
@@ -55,6 +56,20 @@ public static class UserDataManager
             {
                 user.nickName = nickName;
                 SaveUsers(userList);
+                return;
+            }
+        }
+    }
+    public static void AddCoinsToUser(string email, int coinsToAdd)
+    {
+        UserList userList = LoadUsers();
+        foreach (var user in userList.users)
+        {
+            if (user.email == email)
+            {
+                user.coins += coinsToAdd;
+                SaveUsers(userList);
+                Debug.Log($"Đã cộng {coinsToAdd} coins cho {email}. Tổng mới: {user.coins}");
                 return;
             }
         }

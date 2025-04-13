@@ -74,6 +74,7 @@
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class NPCRacerAI : MonoBehaviour
 {
@@ -89,10 +90,27 @@ public class NPCRacerAI : MonoBehaviour
     
     private Rigidbody2D rb;
     private bool isColliding = false;
-    
+
+    public GameObject hitEffectPrefab; // gán prefab hiệu ứng trúng đạn
+    public Slider healthSlider; // gán slider thanh máu qua Inspector
+    private float health = 1f; // giá trị từ 0 đến 1
+    private Coroutine hideHealthBarCoroutine;
+
+    [SerializeField] private AudioClip hitSound;
+    private AudioSource audioSource;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private AudioClip explosionSound;
+
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody2D>();
+
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(false);
+            healthSlider.value = health; // đảm bảo khởi tạo đúng giá trị
+        }
     }
 
     void FixedUpdate()
@@ -140,7 +158,59 @@ public class NPCRacerAI : MonoBehaviour
     {
         if (other.CompareTag("PlayerBullet"))
         {
+            if (hitEffectPrefab != null)
+            {
+                Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+            }
+            if (hitSound != null)
+                audioSource.PlayOneShot(hitSound);
+            // Trừ máu
+            TakeDamage(0.1f); // 10% máu
+
+            // Huỷ viên đạn
+            Destroy(other.gameObject);
+        }
+    }
+    void TakeDamage(float damagePercent)
+    {
+        health -= damagePercent;
+        health = Mathf.Clamp01(health);
+
+        // Hiện thanh máu
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(true);
+            healthSlider.value = health;
+
+            // Nếu có coroutine đang chạy thì dừng lại
+            if (hideHealthBarCoroutine != null)
+            {
+                StopCoroutine(hideHealthBarCoroutine);
+            }
+
+            // Bắt đầu đếm 3 giây để ẩn thanh máu
+            hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
+        }
+
+        if (health <= 0f)
+        {
+            if (explosionSound != null)
+                audioSource.PlayOneShot(explosionSound);
+
+            if (explosionEffect != null)
+            {
+                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
+        }
+    }
+
+    IEnumerator HideHealthBarAfterDelay()
+    {
+        yield return new WaitForSeconds(3f);
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(false);
         }
     }
 

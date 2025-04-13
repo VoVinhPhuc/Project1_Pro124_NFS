@@ -9,9 +9,13 @@ public class Gun : MonoBehaviour
     private float nextShot;
     [SerializeField] private int maxBullet = 5;
     public int currentBullet;
+    [SerializeField] private AudioClip shootClip;
+    private AudioSource audioSource;
 
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+
         currentBullet = maxBullet;
     }
 
@@ -42,6 +46,9 @@ public class Gun : MonoBehaviour
             nextShot = Time.time + shotDelay;
             Instantiate(bulletPrefab, firePos.position, firePos.rotation);
             currentBullet--;
+
+            if (shootClip != null)
+                audioSource.PlayOneShot(shootClip);
         }
     }
 }

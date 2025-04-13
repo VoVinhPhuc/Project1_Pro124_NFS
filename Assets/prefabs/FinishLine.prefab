@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6649550043271124542}
   - component: {fileID: 5986769779526879812}
-  - component: {fileID: 9021326435031365789}
+  - component: {fileID: 4946506814725239941}
   m_Layer: 0
   m_Name: FinishLine
   m_TagString: FinishLine
@@ -79,7 +79,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.32644534, y: 3.720895}
   m_EdgeRadius: 0
---- !u!114 &9021326435031365789
+--- !u!114 &4946506814725239941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,9 +88,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6670767263450940160}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f109b60e5895d34082c3ca3933e90ee, type: 3}
+  m_Script: {fileID: 11500000, guid: f1ab465d312ef88469aebb8b29fc914b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalLaps: 3
   victoryPanel: {fileID: 0}
-  loadingCanvas: {fileID: 0}
+  npcFinishedText: {fileID: 0}
+  outOfTimePanel: {fileID: 0}
+  timerText: {fileID: 0}
+  pausePanel: {fileID: 0}
+  volumeSlider: {fileID: 0}
+  countdownTime: 120

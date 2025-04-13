@@ -38,5 +38,6 @@ public class TrafficLightController : MonoBehaviour
 
         // Cho phép xe bắt đầu chạy
         canStartRace = true;
+        GameManager.Instance.StartCountdownTimer();
     }
 }

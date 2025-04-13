@@ -76,7 +76,7 @@ public class LoginManager : MonoBehaviour
             }
         }
         
-        messageText.text = "Email or Password is not correct!";
+        messageText.text = "Username or Password is not correct!";
     }
 
     public void OpenSignUpPanel()

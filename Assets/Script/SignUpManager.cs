@@ -64,15 +64,19 @@ public class SignUpManager : MonoBehaviour
         // Xóa thông báo cũ trước khi kiểm tra
         errorText.text = "";
 
-        if (!(email.EndsWith("@gmail.com") || email.EndsWith("@fpt.edu.vn")))
+        // Nếu người dùng nhập có dấu @ thì phải đúng đuôi
+        if (email.Contains("@"))
         {
-            errorText.text = "Email must have @gmail.com or @fpt.edu.vn!";
-            return;
+            if (!(email.EndsWith("@gmail.com") || email.EndsWith("@fpt.edu.vn")))
+            {
+                errorText.text = "Email must end with @gmail.com or @fpt.edu.vn!";
+                return;
+            }
         }
 
         if (password != confirmPassword)
         {
-            errorText.text = "Passwords didnt match!";
+            errorText.text = "Passwords didn't match!";
             return;
         }
 
@@ -81,12 +85,12 @@ public class SignUpManager : MonoBehaviour
         {
             if (user.email == email)
             {
-                errorText.text = "Email existed !";
+                errorText.text = "Email or Username already exists!";
                 return;
             }
         }
 
-        // Nếu không trùng email, thêm người dùng mới
+        // Nếu không trùng email/username, thêm người dùng mới
         userList.users.Add(new UserData { email = email, password = password });
         UserDataManager.SaveUsers(userList);
 
@@ -94,6 +98,7 @@ public class SignUpManager : MonoBehaviour
         errorText.text = "SUCCESS!";
         StartCoroutine(ClosePanelAfterDelay(1f));
     }
+
 
     private IEnumerator ClosePanelAfterDelay(float delay)
     {

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
@@ -35,6 +35,12 @@ public class LapCounter : MonoBehaviour
 
     void RaceFinished()
     {
+        string racerName = isPlayer
+        ? PlayerPrefs.GetString("NickName", "Player")
+        : gameObject.name; // hoặc đặt là "NPC1", "NPC2",...
+
+        GameManager.Instance.AddFinisher(racerName, isPlayer);
+
         if (isPlayer)
         {
             GameManager.Instance.ShowVictoryPanel();
