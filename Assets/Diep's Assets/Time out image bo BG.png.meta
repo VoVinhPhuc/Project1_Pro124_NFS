@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Time out image bo BG_0: 452737570802425863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pitstop_car_10_0: 2485701087300520561
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
