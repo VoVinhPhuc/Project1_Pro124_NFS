@@ -40,6 +40,11 @@ public class Car : MonoBehaviour
     public AudioClip engineIdleClip;
     public AudioClip engineAccelerateClip;
 
+    public float rotationSpeed = 360f; // tốc độ xoay
+    private bool isSpinning = false;
+    private bool isStunned = false;
+    private Car movementScript;
+
     private Rigidbody2D rb;
     private float moveInput;
     private float turnInput;
@@ -52,6 +57,7 @@ public class Car : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         engineAudioSource = GetComponent<AudioSource>();
+        movementScript = GetComponent<Car>();
         defaultMaxSpeed = maxSpeed;
         StartCoroutine(WaitBeforeStart(4f));
     }
@@ -191,7 +197,7 @@ public class Car : MonoBehaviour
         {
             Vector3 spawnPosition = transform.position - transform.up * 1.5f;
             GameObject trap = Instantiate(trapBananaPrefab, spawnPosition, Quaternion.identity);
-            StartCoroutine(DestroyTrapAfterTime(trap, 60f));
+            StartCoroutine(DestroyTrapAfterTime(trap, 30f));
         }
     }
 
@@ -274,5 +280,30 @@ public class Car : MonoBehaviour
     {
         yield return new WaitForSeconds(waitTime);
         isWaitingAtStart = false;
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("TrapBanana") && !isStunned)
+        {
+            StartCoroutine(SpinAndStun());
+        }
+    }
+    IEnumerator SpinAndStun()
+    {
+        isStunned = true;
+        movementScript.enabled = false; // Tắt điều khiển xe
+        rb.linearVelocity = Vector2.zero;
+        float timer = 0f;
+
+        while (timer < 3f)
+        {
+            transform.Rotate(Vector3.forward, rotationSpeed * Time.deltaTime);
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        movementScript.enabled = true;
+        isStunned = false;
     }
 }

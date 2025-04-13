@@ -9,7 +9,7 @@ public class NPCRacerAI : MonoBehaviour
     public float speed = 5f;
     public float maxTurnSpeed = 200f;
     public float brakeFactor = 0.5f;
-    public float acceleration = 5f;
+    public float acceleration = 2f; // gia tốc 
     public float turnSensitivity = 5f;
     public float collisionForce = 5f;
     public float avoidanceForce = 3f;
@@ -47,11 +47,11 @@ public class NPCRacerAI : MonoBehaviour
         skillTimer = skillCooldown;
         spawnPoint = transform.position;
 
-        if (healthSlider != null)
-        {
-            healthSlider.gameObject.SetActive(false);
-            healthSlider.value = health;
-        }
+        // if (healthSlider != null)
+        // {
+        //     healthSlider.gameObject.SetActive(false);
+        //     healthSlider.value = health;
+        // }
 
         StartCoroutine(WaitBeforeStart(4f)); // Đứng yên tại vạch xuất phát 4 giây
     }
@@ -214,7 +214,7 @@ public class NPCRacerAI : MonoBehaviour
         {
             Vector3 spawnPosition = transform.position - transform.up * 1.5f;
             GameObject trap = Instantiate(trapBananaPrefab, spawnPosition, Quaternion.identity);
-            StartCoroutine(DestroyTrapAfterTime(trap, 60f));
+            StartCoroutine(DestroyTrapAfterTime(trap, 30f));
         }
 
         canUseSkill = false;

@@ -53,5 +53,8 @@ TagManager:
   - name: PlayerBullet
     uniqueID: 4122980481
     locked: 0
+  - name: player
+    uniqueID: 376578803
+    locked: 0
   m_RenderingLayers:
   - Default
