@@ -11,6 +11,10 @@ public class Gun : MonoBehaviour
     public int currentBullet;
     [SerializeField] private AudioClip shootClip;
     private AudioSource audioSource;
+    private float timeSinceStart = 0f; // Thời gian kể từ khi bắt đầu
+    private float noShootDelay = 10f;  // Không bắn trong 10 giây đầu
+
+    [SerializeField] private float bulletOffset = 1.5f; // Độ lệch của viên đạn so với vị trí bắn
 
     void Start()
     {
@@ -23,6 +27,7 @@ public class Gun : MonoBehaviour
     {
         RotateGun();
         Shoot();
+        timeSinceStart += Time.deltaTime;
     }
 
     void RotateGun()
@@ -41,14 +46,30 @@ public class Gun : MonoBehaviour
 
     void Shoot()
     {
+        if (timeSinceStart < noShootDelay) return; // Không bắn trong 10 giây đầu
         if (Input.GetMouseButtonDown(0) && currentBullet > 0 && Time.time > nextShot)
         {
-            nextShot = Time.time + shotDelay;
-            Instantiate(bulletPrefab, firePos.position, firePos.rotation);
-            currentBullet--;
+            // Tạo viên đạn, thêm độ lệch vào vị trí bắn
+            Vector3 firePointPosition = firePos.position + transform.up * bulletOffset;
 
+            // Instantiate viên đạn tại vị trí mới
+            GameObject bullet = Instantiate(bulletPrefab, firePointPosition, firePos.rotation);
+            Bullet bulletScript = bullet.GetComponent<Bullet>();
+
+            // Kiểm tra và gán shooter cho viên đạn
+            if (bulletScript != null)
+            {
+                bulletScript.shooter = gameObject; // GÁN NGƯỜI BẮN LÀ PLAYER
+            }
+
+            nextShot = Time.time + shotDelay; // Cập nhật thời gian giữa các phát bắn
+            currentBullet--; // Giảm số viên đạn sau mỗi phát bắn
+
+            // Phát âm thanh khi bắn
             if (shootClip != null)
+            {
                 audioSource.PlayOneShot(shootClip);
+            }
         }
     }
 }
