@@ -241,11 +241,11 @@ PrefabInstance:
       objectReference: {fileID: 1203063537}
     - target: {fileID: 8462052646754060166, guid: a0fd8ce4d2e95c944875a9207891aadf, type: 3}
       propertyPath: m_SortingOrder
-      value: 20
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 8462052646754060166, guid: a0fd8ce4d2e95c944875a9207891aadf, type: 3}
       propertyPath: m_SortingLayerID
-      value: 530015415
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8686167295943485645, guid: a0fd8ce4d2e95c944875a9207891aadf, type: 3}
       propertyPath: m_Pivot.x
@@ -2535,7 +2535,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1463159256477367231, guid: 66a33f8c80920144eb821059e3de39c8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5771318098522768557, guid: 66a33f8c80920144eb821059e3de39c8, type: 3}
       propertyPath: m_Pivot.x
@@ -2621,6 +2621,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1203063537}
+    - target: {fileID: 8785452130374667051, guid: 66a33f8c80920144eb821059e3de39c8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
