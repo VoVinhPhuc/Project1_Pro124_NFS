@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 7f51d5fc21d3e3c4a9c910d5063e39f6
   - enabled: 1
-    path: Assets/Scenes/PlayWith4NPC.unity
+    path: Assets/Scenes/Erangel.unity
     guid: edd96f8881e4e51498bf5aa5c73eda2e
   - enabled: 1
     path: Assets/Scenes/Room.unity
@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/PlayWith3NPC.unity
+    path: Assets/Scenes/SanHok.unity
     guid: 9a604bfd924bb8a43be3f200dfa06ae1
   - enabled: 1
     path: Assets/Scenes/Scene 2.unity
@@ -30,10 +30,10 @@ EditorBuildSettings:
     path: Assets/Scenes/PlayWith2NPC.unity
     guid: 349a18328d88c5840af57c5a9aa77b22
   - enabled: 1
-    path: Assets/Scenes/PlayWith1NPC.unity
+    path: Assets/Scenes/Miramar.unity
     guid: e491467548bbfd148aa2ed9e14a2b9f7
   - enabled: 1
-    path: Assets/Scenes/Scene 5.unity
+    path: Assets/Scenes/Atlantic.unity
     guid: aa61cd0ba364fa74d95c10a1f725edda
   - enabled: 1
     path: Assets/Scenes/UI end game.unity

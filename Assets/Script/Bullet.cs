@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class Bullet : MonoBehaviour
 {
+    public GameObject shooter;
     [SerializeField] private float moveSpeed = 25f;
     [SerializeField] private float timeDestroy = 0.5f;
 

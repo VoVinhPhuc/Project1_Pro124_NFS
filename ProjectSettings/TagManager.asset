@@ -10,6 +10,7 @@ TagManager:
   - TrapBanana
   - Checkpoint
   - TrapSlow
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,12 @@ TagManager:
     locked: 0
   - name: player
     uniqueID: 376578803
+    locked: 0
+  - name: NPCBullet
+    uniqueID: 2382661237
+    locked: 0
+  - name: MiniMap
+    uniqueID: 530015415
     locked: 0
   m_RenderingLayers:
   - Default

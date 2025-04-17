@@ -40,6 +40,21 @@ public class Car : MonoBehaviour
     public AudioClip engineIdleClip;
     public AudioClip engineAccelerateClip;
 
+    [Header("Hit Settings")]
+    public GameObject hitEffectPrefab;
+    public Slider healthSlider;
+    private float health = 1f;
+    private Coroutine hideHealthBarCoroutine;
+    [SerializeField] private AudioClip hitSound;
+    private AudioSource audioSource;
+    [SerializeField] private GameObject explosionEffect;
+    [SerializeField] private AudioClip explosionSound;
+
+    [Header("Checkpoint Settings")]
+    public float checkpointDistance = 10f;  // Khoảng cách tối thiểu để tạo một checkpoint mới
+    private Vector2 lastCheckpointPosition;  // Vị trí checkpoint trước đó
+    private List<Transform> checkpointsList = new List<Transform>();
+
     public float rotationSpeed = 360f; // tốc độ xoay
     private bool isSpinning = false;
     private bool isStunned = false;
@@ -57,8 +72,17 @@ public class Car : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         engineAudioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         movementScript = GetComponent<Car>();
         defaultMaxSpeed = maxSpeed;
+
+        lastCheckpointPosition = transform.position;
+
+        if (healthSlider != null)
+        {
+            healthSlider.gameObject.SetActive(true);
+            healthSlider.value = health;
+        }
         StartCoroutine(WaitBeforeStart(4f));
     }
 
@@ -74,6 +98,11 @@ public class Car : MonoBehaviour
         HandleEngineSound();
         HandleDrift();
         HandleSkillSlider();
+
+        if (Vector2.Distance(transform.position, lastCheckpointPosition) >= checkpointDistance)
+        {
+            CreateCheckpoint();
+        }
 
         if (Input.GetKey(KeyCode.Space))
         {
@@ -283,12 +312,90 @@ public class Car : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
+{
+    Bullet bullet = other.GetComponent<Bullet>();
+    if (bullet != null)
     {
-        if (other.CompareTag("TrapBanana") && !isStunned)
+        if (bullet.shooter == gameObject) return; // Né đạn của chính mình
+
+        if (hitEffectPrefab != null)
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        if (hitSound != null && audioSource != null)
+            audioSource.PlayOneShot(hitSound);
+
+        TakeDamage(0.1f);
+        Destroy(other.gameObject);
+        return;
+    }
+
+    if (other.CompareTag("TrapBanana") && !isStunned)
+    {
+        StartCoroutine(SpinAndStun());
+    }
+}
+    void CreateCheckpoint()
+    {
+        // Tạo một checkpoint mới tại vị trí hiện tại của xe
+        GameObject checkpoint = new GameObject("Checkpoint");
+        checkpoint.transform.position = transform.position;
+
+        // Thêm checkpoint mới vào danh sách
+        checkpointsList.Add(checkpoint.transform);
+
+        // Cập nhật vị trí checkpoint cuối cùng
+        lastCheckpointPosition = transform.position;
+
+        // Debug log để kiểm tra các checkpoint đã tạo
+        Debug.Log("Checkpoint created at: " + transform.position);
+    }   
+    void TakeDamage(float damagePercent)
+    {
+        health -= damagePercent;
+        health = Mathf.Clamp01(health);
+
+        if (healthSlider != null)
         {
-            StartCoroutine(SpinAndStun());
+            healthSlider.gameObject.SetActive(true);
+            healthSlider.value = health;
+
+            if (hideHealthBarCoroutine != null)
+                StopCoroutine(hideHealthBarCoroutine);
+
+            //hideHealthBarCoroutine = StartCoroutine(HideHealthBarAfterDelay());
+        }
+
+        if (health <= 0f)
+        {
+            if (explosionSound != null)
+                audioSource.PlayOneShot(explosionSound);
+
+            if (explosionEffect != null)
+                Instantiate(explosionEffect, transform.position, Quaternion.identity);
+
+            RespawnAtCheckpoint();
         }
     }
+    void RespawnAtCheckpoint()
+    {
+        if (checkpointsList.Count > 0)
+        {
+            Transform lastCheckpoint = checkpointsList[checkpointsList.Count - 1];
+            transform.position = lastCheckpoint.position;  // Di chuyển xe đến checkpoint gần nhất
+            health = 1f;  // Đặt lại sức khỏe
+            if (healthSlider != null)
+                healthSlider.value = health;  // Cập nhật lại thanh máu
+        }
+    }
+
+    // IEnumerator HideHealthBarAfterDelay()
+    // {
+    //     yield return new WaitForSeconds(3f);
+    //     if (healthSlider != null)
+    //     {
+    //         healthSlider.gameObject.SetActive(false);
+    //     }
+    // }
     IEnumerator SpinAndStun()
     {
         isStunned = true;

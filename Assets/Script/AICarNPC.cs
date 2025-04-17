@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class NPCRacerAI : MonoBehaviour
 {
@@ -16,6 +17,9 @@ public class NPCRacerAI : MonoBehaviour
     public float rotationSpeed = 360f;
     private float timeSinceStart = 0f;
     public float skillUsageDelay = 30f; // Không xài skill trong 30 giây đầu
+
+     private List<Vector2> passedWaypoints = new List<Vector2>();
+
     [Header("Skill Settings")]
     public GameObject trapBananaPrefab;
     public float skillCooldown = 15f;
@@ -46,12 +50,8 @@ public class NPCRacerAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         skillTimer = skillCooldown;
         spawnPoint = transform.position;
-
-        // if (healthSlider != null)
-        // {
-        //     healthSlider.gameObject.SetActive(false);
-        //     healthSlider.value = health;
-        // }
+        healthSlider.gameObject.SetActive(false);
+        
 
         StartCoroutine(WaitBeforeStart(4f)); // Đứng yên tại vạch xuất phát 4 giây
     }
@@ -75,6 +75,7 @@ public class NPCRacerAI : MonoBehaviour
         float angle = Vector2.SignedAngle(transform.up, direction);
         float currentSpeed = speed * Mathf.Lerp(1f, brakeFactor, Mathf.Abs(angle) / 90f);
 
+
         rb.linearVelocity = Vector2.Lerp(rb.linearVelocity, transform.up * currentSpeed, Time.deltaTime * acceleration);
 
         float rotationAmount = Mathf.Clamp(angle * turnSensitivity * Time.deltaTime, -maxTurnSpeed, maxTurnSpeed);
@@ -82,6 +83,7 @@ public class NPCRacerAI : MonoBehaviour
 
         if (Vector2.Distance(transform.position, targetWaypoint.position) < 0.5f)
         {
+            passedWaypoints.Add(targetWaypoint.position);
             currentWaypointIndex = (currentWaypointIndex + 1) % waypoints.Length;
         }
     }
@@ -95,8 +97,9 @@ public class NPCRacerAI : MonoBehaviour
 
             Vector2 pushDirection = (transform.position - collision.transform.position).normalized;
             rb.AddForce(pushDirection * collisionForce, ForceMode2D.Impulse);
-            StartCoroutine(RecoverFromCollision(0.5f));
+            StartCoroutine(RecoverFromCollision(1f));
         }
+        StartCoroutine(StopMovementForSeconds(1f));
     }
 
     IEnumerator RecoverFromCollision(float waitTime)
@@ -111,27 +114,46 @@ public class NPCRacerAI : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         isWaitingAtStart = false;
     }
+    private IEnumerator StopMovementForSeconds(float seconds)
+    {
+        
+        rb.isKinematic = true; // Tắt vật lý để đối tượng đứng im
+        yield return new WaitForSeconds(seconds);
+        rb.isKinematic = false; // Bật lại vật lý sau khi thời gian kết thúc
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("PlayerBullet"))
+        Bullet bullet = other.GetComponent<Bullet>();
+        if (bullet != null)
         {
-            if (hitEffectPrefab != null)
-            {
-                Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
-            }
+            if (bullet.shooter == gameObject) return; 
 
-            if (hitSound != null)
-                audioSource.PlayOneShot(hitSound);
+            if (hitEffectPrefab != null)
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+            if (hitSound != null && audioSource != null)
+            audioSource.PlayOneShot(hitSound);
 
             TakeDamage(0.1f);
             Destroy(other.gameObject);
+            return;
         }
 
         if (other.CompareTag("TrapBanana") && !isStunned)
         {
             StartCoroutine(SpinAndStun());
         }
+    }
+
+
+    void HandleHitEffect()
+    {
+        if (hitEffectPrefab != null)
+            Instantiate(hitEffectPrefab, transform.position, Quaternion.identity);
+
+        if (hitSound != null)
+            audioSource.PlayOneShot(hitSound);
     }
 
     IEnumerator SpinAndStun()
@@ -178,13 +200,13 @@ public class NPCRacerAI : MonoBehaviour
                 Instantiate(explosionEffect, transform.position, Quaternion.identity);
             }
 
-            Destroy(gameObject);
+            RespawnAtClosestWaypoint();
         }
     }
 
     IEnumerator HideHealthBarAfterDelay()
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         if (healthSlider != null)
         {
             healthSlider.gameObject.SetActive(false);
@@ -196,7 +218,7 @@ public class NPCRacerAI : MonoBehaviour
 
         if (canUseSkill)
         {
-         UseSkill();
+            UseSkill();
         }
         else
         {
@@ -225,7 +247,25 @@ public class NPCRacerAI : MonoBehaviour
         if (trap != null) Destroy(trap);
     }
 
+    void RespawnAtClosestWaypoint()
+    {
+        if (passedWaypoints.Count == 0) return; // Nếu không có điểm đã đi qua, không respawn
 
+        Vector2 closestPoint = passedWaypoints[0];
+        float closestDistance = Vector2.Distance(transform.position, closestPoint);
+
+        foreach (Vector2 waypoint in passedWaypoints)
+        {
+            float distance = Vector2.Distance(transform.position, waypoint);
+            if (distance < closestDistance)
+            {
+                closestPoint = waypoint;
+                closestDistance = distance;
+            }
+        }
+
+        transform.position = closestPoint; // Respawn tại điểm gần nhất đã đi qua
+    }
     void OnDrawGizmos()
     {
         if (waypoints == null || waypoints.Length == 0) return;
@@ -244,3 +284,5 @@ public class NPCRacerAI : MonoBehaviour
         }
     }
 }
+
+
