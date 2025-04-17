@@ -241,7 +241,7 @@ PrefabInstance:
       objectReference: {fileID: 1203063537}
     - target: {fileID: 8462052646754060166, guid: a0fd8ce4d2e95c944875a9207891aadf, type: 3}
       propertyPath: m_SortingOrder
-      value: 39
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 8462052646754060166, guid: a0fd8ce4d2e95c944875a9207891aadf, type: 3}
       propertyPath: m_SortingLayerID
@@ -388,7 +388,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -521,7 +521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: 0.009
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1299,6 +1299,14 @@ PrefabInstance:
     - target: {fileID: 6570922707319263067, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726038566537100351, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726038566537100351, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.427
       objectReference: {fileID: 0}
     - target: {fileID: 7056641312947914484, guid: 4228afce956c9784e8d41b96e3e083cb, type: 3}
       propertyPath: hitSound
@@ -2090,7 +2098,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: -0.002
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2508,6 +2516,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1203063537}
+    - target: {fileID: 5815168618332988374, guid: 4791ff770a5b39548a4d94ad022e7c7e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 9167876330188780487, guid: 4791ff770a5b39548a4d94ad022e7c7e, type: 3}
       propertyPath: m_Name
       value: Canvas Timer and outOfTime Panel
@@ -2621,10 +2633,6 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1203063537}
-    - target: {fileID: 8785452130374667051, guid: 66a33f8c80920144eb821059e3de39c8, type: 3}
-      propertyPath: m_SortingOrder
-      value: 40
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2678,6 +2686,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1203063537}
+    - target: {fileID: 6143809389308420126, guid: f6fb66cb1fd57f143bf03e69c4043e39, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 6356423414452824071, guid: f6fb66cb1fd57f143bf03e69c4043e39, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -3780,6 +3792,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1203063537}
+    - target: {fileID: 1252540861773695912, guid: c6a88078509244d469041c037cd05adb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 1611809475060262963, guid: c6a88078509244d469041c037cd05adb, type: 3}
       propertyPath: m_Name
       value: Canvas Loading
@@ -4441,7 +4457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005
+      value: -0.001
       objectReference: {fileID: 0}
     - target: {fileID: 8785979071946255295, guid: 532fe4779194ac44eafb8d409b13668f, type: 3}
       propertyPath: m_LocalPosition.y

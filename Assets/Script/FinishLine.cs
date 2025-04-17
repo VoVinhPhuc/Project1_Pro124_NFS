@@ -4,7 +4,7 @@ using System.Collections;
 
 public class LapCounter : MonoBehaviour
 {
-    public int totalLaps = 3;
+    public int totalLaps = 4;
     private int currentLap = 0;
     private bool canCountLap = true;
     public bool isPlayer = false;
@@ -35,9 +35,7 @@ public class LapCounter : MonoBehaviour
 
     void RaceFinished()
     {
-        string racerName = isPlayer
-        ? PlayerPrefs.GetString("NickName", "Player")
-        : gameObject.name; // hoặc đặt là "NPC1", "NPC2",...
+        string racerName = isPlayer ? PlayerPrefs.GetString("NickName", "Player") : gameObject.name; // hoặc đặt là "NPC1", "NPC2",...
 
         GameManager.Instance.AddFinisher(racerName, isPlayer);
 

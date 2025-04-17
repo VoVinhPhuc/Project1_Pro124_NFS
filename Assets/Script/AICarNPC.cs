@@ -280,7 +280,7 @@ public class NPCRacerAI : MonoBehaviour
         for (int i = 0; i < waypoints.Length; i++)
         {
             Gizmos.color = (i == currentWaypointIndex) ? Color.red : Color.yellow;
-            Gizmos.DrawSphere(waypoints[i].position, 0.3f);
+            Gizmos.DrawSphere(waypoints[i].position, 1f);
         }
     }
 }

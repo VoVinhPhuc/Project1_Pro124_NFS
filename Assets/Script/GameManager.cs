@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     
-
     public GameObject victoryPanel;
     public TMP_Text npcFinishedText;
     public GameObject outOfTimePanel;
@@ -207,6 +206,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("UI end game");
     }
+      
     public List<RaceResult> GetTopFinishers()
     {
         return topFinishers;
