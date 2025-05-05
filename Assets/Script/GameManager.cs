@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    
+    [Header("UI Panels")]
     public GameObject victoryPanel;
     public TMP_Text npcFinishedText;
     public GameObject outOfTimePanel;
@@ -25,17 +25,18 @@ public class GameManager : MonoBehaviour
 
     [Header("Audio UI")]
     public Slider volumeSlider;
-    private bool isPaused = false;
 
-
-    public float countdownTime = 120f; // 2 phút = 120 giây
-    private bool gameEnded = false;
-    private bool resultShown = false;
-
-    [Header("Finish Logic")]
+    [Header("Race Logic")]
+    public float countdownTime = 120f;
     private int npcFinishedCount = 0;
     private List<RaceResult> topFinishers = new List<RaceResult>();
     private int totalFinishers = 0;
+    private bool isPaused = false;
+    private bool gameEnded = false;
+
+    private string playerNickName = "";
+    private string playerEmail = "";
+    private string lastRaceScene = "";
 
     private void Awake()
     {
@@ -49,24 +50,26 @@ public class GameManager : MonoBehaviour
 
         DontDestroyOnLoad(this.gameObject);
     }
+
     private void Start()
     {
         outOfTimePanel.SetActive(false);
         pausePanel.SetActive(false);
+
         volumeSlider.onValueChanged.AddListener(SetVolume);
         volumeSlider.value = AudioListener.volume;
 
-        PlayerPrefs.SetString("LastRaceScene", SceneManager.GetActiveScene().name);
+        lastRaceScene = SceneManager.GetActiveScene().name;
     }
-    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.P) && !gameEnded)
         {
             TogglePause();
         }
-
     }
+
     void TogglePause()
     {
         isPaused = !isPaused;
@@ -79,6 +82,7 @@ public class GameManager : MonoBehaviour
     {
         AudioListener.volume = volume;
     }
+
     public void OnRestartButton()
     {
         Time.timeScale = 1f;
@@ -90,6 +94,12 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         SceneManager.LoadScene("Menu");
     }
+
+    public void StartCountdownTimer()
+    {
+        StartCoroutine(CountdownTimer());
+    }
+
     IEnumerator CountdownTimer()
     {
         float timeRemaining = countdownTime;
@@ -99,7 +109,7 @@ public class GameManager : MonoBehaviour
         {
             if (gameEnded) yield break;
 
-            timeRemaining = Mathf.Max(0, timeRemaining - Time.deltaTime);
+            timeRemaining -= Time.deltaTime;
             int minutes = Mathf.FloorToInt(timeRemaining / 60f);
             int seconds = Mathf.FloorToInt(timeRemaining % 60f);
             timerText.text = $"{minutes:00}:{seconds:00}";
@@ -113,12 +123,12 @@ public class GameManager : MonoBehaviour
             yield return null;
         }
 
-        // Hết giờ
         if (!gameEnded)
         {
             StartCoroutine(HandleOutOfTime());
         }
     }
+
     IEnumerator FlashTimerText()
     {
         bool visible = true;
@@ -129,44 +139,33 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
     }
+
     IEnumerator HandleOutOfTime()
     {
         gameEnded = true;
         outOfTimePanel.SetActive(true);
 
-        yield return new WaitForSeconds(3f); // Hiện "Out of time"
-
+        yield return new WaitForSeconds(3f);
         outOfTimePanel.SetActive(false);
+
         if (topFinishers.Count > 0)
         {
             victoryPanel.SetActive(true);
             yield return new WaitForSeconds(5f);
-        } // Victory panel
+        }
+
         SceneManager.LoadScene("UI end game");
-    }
-    public void StartCountdownTimer()
-    {
-        StartCoroutine(CountdownTimer());
-    }
-
-    public void ShowVictoryPanel()
-    {
-        if (gameEnded) return; // Nếu đã hết giờ thì không hiển thị nữa
-
-        gameEnded = true;
-        victoryPanel.SetActive(true);
-        StartCoroutine(LoadEndGameScene());
     }
 
     public void NPCFinished(GameObject npc)
     {
         npcFinishedCount++;
-        npc.SetActive(false); // Ẩn NPC đã về đích
+        npc.SetActive(false);
 
         npcFinishedText.text = $"{npcFinishedCount} NPC finished";
         npcFinishedText.gameObject.SetActive(true);
 
-        Invoke(nameof(HideNPCMessage), 3f); // Ẩn sau 3s
+        Invoke(nameof(HideNPCMessage), 3f);
     }
 
     void HideNPCMessage()
@@ -174,11 +173,6 @@ public class GameManager : MonoBehaviour
         npcFinishedText.gameObject.SetActive(false);
     }
 
-    IEnumerator LoadEndGameScene()
-    {
-        yield return new WaitForSeconds(5f);
-        SceneManager.LoadScene("UI end game");
-    }
     public void AddFinisher(string name, bool isPlayer)
     {
         if (gameEnded) return;
@@ -200,15 +194,27 @@ public class GameManager : MonoBehaviour
             StartCoroutine(ShowTop3AndEndGame());
         }
     }
+
     IEnumerator ShowTop3AndEndGame()
     {
         victoryPanel.SetActive(true);
         yield return new WaitForSeconds(5f);
         SceneManager.LoadScene("UI end game");
     }
-      
+
     public List<RaceResult> GetTopFinishers()
     {
         return topFinishers;
     }
+
+    // ✅ Thêm để đồng bộ với UIEndGameManager
+    public void SetPlayerInfo(string nickName, string email)
+    {
+        playerNickName = nickName;
+        playerEmail = email;
+    }
+
+    public string GetPlayerNickName() => playerNickName;
+    public string GetPlayerEmail() => playerEmail;
+    public string GetLastRaceScene() => lastRaceScene;
 }

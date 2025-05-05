@@ -15,26 +15,62 @@ EditorBuildSettings:
     path: Assets/Scenes/Erangel.unity
     guid: edd96f8881e4e51498bf5aa5c73eda2e
   - enabled: 1
+    path: Assets/Scenes/Erangel Bike.unity
+    guid: dc41917563091a64c8f655d8a10b6a65
+  - enabled: 1
+    path: Assets/Scenes/Erangel Fire.unity
+    guid: 6fc4780d04108c449bf20fa9350ee97c
+  - enabled: 1
+    path: Assets/Scenes/Erangel Police.unity
+    guid: 0e2b37d0769a33a4dbce9e8f8713dea6
+  - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: 30fb2b7a69a9f964ba50f12a24a60503
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/SanHok.unity
     guid: 9a604bfd924bb8a43be3f200dfa06ae1
   - enabled: 1
+    path: Assets/Scenes/SanHok Bike.unity
+    guid: de2cbadc1234a064c95ec0e3bb98bf54
+  - enabled: 1
+    path: Assets/Scenes/SanHok Fire.unity
+    guid: f49491f367377a34698a74abc05fb5df
+  - enabled: 1
+    path: Assets/Scenes/SanHok Police.unity
+    guid: ff6e3006d2dfe6042bdde0d42c588289
+  - enabled: 0
     path: Assets/Scenes/Scene 2.unity
     guid: 51c713d6f92920845b7a03b068dc686c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/PlayWith2NPC.unity
     guid: 349a18328d88c5840af57c5a9aa77b22
   - enabled: 1
     path: Assets/Scenes/Miramar.unity
     guid: e491467548bbfd148aa2ed9e14a2b9f7
   - enabled: 1
+    path: Assets/Scenes/Miramar Bike.unity
+    guid: 28b6fcfd138ff8a4292abbc7a18ec8d6
+  - enabled: 1
+    path: Assets/Scenes/Miramar Fire.unity
+    guid: ee65964c1b8a0d540a5b85625abca89c
+  - enabled: 1
+    path: Assets/Scenes/Miramar Police.unity
+    guid: 0871a2d5412764e459959ad3b17dab52
+  - enabled: 1
     path: Assets/Scenes/Atlantic.unity
     guid: aa61cd0ba364fa74d95c10a1f725edda
+  - enabled: 1
+    path: Assets/Scenes/Atlantic Bike.unity
+    guid: 189a37e94ced58344bcb3d6c1ca703cc
+  - enabled: 1
+    path: Assets/Scenes/Atlantic Fire.unity
+    guid: 938532dc7bf14874a84a2d03163ecf5b
+  - enabled: 1
+    path: Assets/Scenes/Atlantic Police.unity
+    guid: 664871a7e2b26ab42bcced578638f089
   - enabled: 1
     path: Assets/Scenes/UI end game.unity
     guid: f6b9dbb878485214bb436d8d82c5eff1

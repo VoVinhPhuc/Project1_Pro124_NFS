@@ -70,5 +70,7 @@ public class NickNameManager : MonoBehaviour
 
         messageText.text = "NickName saved!";
         nickNamePanel.SetActive(false); // Ẩn panel sau khi lưu
+
+        GameManager.Instance.SetPlayerInfo(nickName, LoginManager.loggedInEmail);
     }
 }

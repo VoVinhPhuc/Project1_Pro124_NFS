@@ -47,6 +47,16 @@ MonoBehaviour:
   panelPlay: {fileID: 0}
   panelHost: {fileID: 0}
   panelJoin: {fileID: 0}
+  panelPlaySelection: {fileID: 0}
+  panelGameMode: {fileID: 0}
+  panelLoading: {fileID: 0}
+  myNFSPanel: {fileID: 0}
+  newsPanel: {fileID: 0}
+  settingsPanel: {fileID: 0}
+  audioSettingsPopup: {fileID: 0}
   generatedRoomIdText: {fileID: 0}
   joinRoomIdInput: {fileID: 0}
   errorMessageText: {fileID: 0}
+  loadingSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  muteMusicToggle: {fileID: 0}

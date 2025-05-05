@@ -9,6 +9,8 @@ public class UserData
     public string password;
     public string nickName;
     public int coins;
+    public List<string> ownedSkins = new List<string>();
+    public string selectedSkin;
 }
 
 [System.Serializable]

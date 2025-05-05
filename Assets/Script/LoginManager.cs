@@ -70,6 +70,9 @@ public class LoginManager : MonoBehaviour
             if (user.email == email && user.password == password)
             {
                 loggedInEmail = email;
+                PlayerPrefs.SetString("email", email);  // ✅ THÊM DÒNG NÀY
+                PlayerPrefs.Save();
+
                 Debug.Log("Đăng nhập thành công! Email: " + loggedInEmail);
                 SceneManager.LoadScene("Menu");
                 return;
@@ -88,5 +91,10 @@ public class LoginManager : MonoBehaviour
     {
         forgetPasswordPanel.SetActive(true);
         forgetPasswordErrorText.text = ""; // Reset lỗi cũ
+    }
+    public void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game is quitting..."); // Chỉ hiện khi test trong Editor
     }
 }

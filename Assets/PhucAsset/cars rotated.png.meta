@@ -190,10 +190,10 @@ TextureImporter:
       name: cars rotated_0
       rect:
         serializedVersion: 2
-        x: 17
-        y: 479
-        width: 98
-        height: 53
+        x: 7
+        y: 409
+        width: 52
+        height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -212,10 +212,10 @@ TextureImporter:
       name: cars rotated_1
       rect:
         serializedVersion: 2
-        x: 127
-        y: 482
-        width: 88
-        height: 47
+        x: 67
+        y: 452
+        width: 47
+        height: 91
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -234,10 +234,10 @@ TextureImporter:
       name: cars rotated_2
       rect:
         serializedVersion: 2
-        x: 232
-        y: 478
-        width: 137
-        height: 54
+        x: 129
+        y: 451
+        width: 49
+        height: 93
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -256,10 +256,10 @@ TextureImporter:
       name: cars rotated_3
       rect:
         serializedVersion: 2
-        x: 408
-        y: 478
-        width: 137
-        height: 54
+        x: 189
+        y: 447
+        width: 50
+        height: 97
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -278,10 +278,10 @@ TextureImporter:
       name: cars rotated_4
       rect:
         serializedVersion: 2
-        x: 17
-        y: 414
-        width: 98
-        height: 53
+        x: 247
+        y: 448
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -300,10 +300,10 @@ TextureImporter:
       name: cars rotated_5
       rect:
         serializedVersion: 2
-        x: 127
-        y: 427
-        width: 88
-        height: 47
+        x: 308
+        y: 448
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -322,10 +322,10 @@ TextureImporter:
       name: cars rotated_6
       rect:
         serializedVersion: 2
-        x: 230
-        y: 418
-        width: 105
-        height: 57
+        x: 367
+        y: 448
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -344,10 +344,10 @@ TextureImporter:
       name: cars rotated_7
       rect:
         serializedVersion: 2
-        x: 339
-        y: 421
-        width: 102
-        height: 53
+        x: 426
+        y: 402
+        width: 60
+        height: 137
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -366,10 +366,10 @@ TextureImporter:
       name: cars rotated_8
       rect:
         serializedVersion: 2
-        x: 451
-        y: 423
-        width: 93
-        height: 49
+        x: 7
+        y: 233
+        width: 52
+        height: 135
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -388,10 +388,10 @@ TextureImporter:
       name: cars rotated_9
       rect:
         serializedVersion: 2
-        x: 17
-        y: 349
-        width: 98
-        height: 53
+        x: 65
+        y: 340
+        width: 51
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -411,9 +411,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 127
-        y: 370
-        width: 88
-        height: 47
+        y: 340
+        width: 51
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -432,10 +432,10 @@ TextureImporter:
       name: cars rotated_11
       rect:
         serializedVersion: 2
-        x: 230
-        y: 358
-        width: 105
-        height: 57
+        x: 189
+        y: 340
+        width: 51
+        height: 100
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -454,10 +454,10 @@ TextureImporter:
       name: cars rotated_12
       rect:
         serializedVersion: 2
-        x: 339
-        y: 359
-        width: 102
-        height: 53
+        x: 247
+        y: 345
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -476,10 +476,10 @@ TextureImporter:
       name: cars rotated_13
       rect:
         serializedVersion: 2
-        x: 450
-        y: 359
-        width: 95
-        height: 51
+        x: 308
+        y: 345
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -498,10 +498,10 @@ TextureImporter:
       name: cars rotated_14
       rect:
         serializedVersion: 2
-        x: 17
-        y: 286
-        width: 98
-        height: 53
+        x: 367
+        y: 345
+        width: 52
+        height: 92
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -520,10 +520,10 @@ TextureImporter:
       name: cars rotated_15
       rect:
         serializedVersion: 2
-        x: 127
-        y: 314
-        width: 88
-        height: 47
+        x: 64
+        y: 231
+        width: 55
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -542,10 +542,10 @@ TextureImporter:
       name: cars rotated_16
       rect:
         serializedVersion: 2
-        x: 230
-        y: 296
-        width: 105
-        height: 57
+        x: 124
+        y: 231
+        width: 55
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -564,10 +564,10 @@ TextureImporter:
       name: cars rotated_17
       rect:
         serializedVersion: 2
-        x: 339
-        y: 297
-        width: 102
-        height: 53
+        x: 186
+        y: 231
+        width: 55
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -586,10 +586,10 @@ TextureImporter:
       name: cars rotated_18
       rect:
         serializedVersion: 2
-        x: 446
-        y: 298
-        width: 99
-        height: 52
+        x: 248
+        y: 231
+        width: 55
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -608,10 +608,10 @@ TextureImporter:
       name: cars rotated_19
       rect:
         serializedVersion: 2
-        x: 127
-        y: 256
-        width: 88
-        height: 47
+        x: 308
+        y: 231
+        width: 55
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -630,10 +630,10 @@ TextureImporter:
       name: cars rotated_20
       rect:
         serializedVersion: 2
-        x: 230
-        y: 234
-        width: 105
-        height: 57
+        x: 366
+        y: 231
+        width: 55
+        height: 103
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -652,10 +652,10 @@ TextureImporter:
       name: cars rotated_21
       rect:
         serializedVersion: 2
-        x: 344
-        y: 238
-        width: 94
-        height: 54
+        x: 10
+        y: 128
+        width: 45
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -674,10 +674,10 @@ TextureImporter:
       name: cars rotated_22
       rect:
         serializedVersion: 2
-        x: 447
-        y: 238
-        width: 94
-        height: 54
+        x: 65
+        y: 128
+        width: 45
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -696,10 +696,10 @@ TextureImporter:
       name: cars rotated_23
       rect:
         serializedVersion: 2
-        x: 230
-        y: 174
-        width: 108
-        height: 57
+        x: 122
+        y: 128
+        width: 45
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -718,10 +718,10 @@ TextureImporter:
       name: cars rotated_24
       rect:
         serializedVersion: 2
-        x: 344
-        y: 177
-        width: 94
-        height: 54
+        x: 178
+        y: 128
+        width: 45
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -740,10 +740,10 @@ TextureImporter:
       name: cars rotated_25
       rect:
         serializedVersion: 2
-        x: 447
-        y: 177
-        width: 94
-        height: 54
+        x: 236
+        y: 128
+        width: 45
+        height: 86
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -762,10 +762,10 @@ TextureImporter:
       name: cars rotated_26
       rect:
         serializedVersion: 2
-        x: 230
-        y: 116
-        width: 105
-        height: 57
+        x: 7
+        y: 18
+        width: 51
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -784,10 +784,10 @@ TextureImporter:
       name: cars rotated_27
       rect:
         serializedVersion: 2
-        x: 344
-        y: 118
-        width: 94
-        height: 54
+        x: 72
+        y: 18
+        width: 51
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -806,10 +806,10 @@ TextureImporter:
       name: cars rotated_28
       rect:
         serializedVersion: 2
-        x: 447
-        y: 118
-        width: 94
-        height: 54
+        x: 137
+        y: 18
+        width: 51
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -828,10 +828,10 @@ TextureImporter:
       name: cars rotated_29
       rect:
         serializedVersion: 2
-        x: 401
-        y: 51
-        width: 139
-        height: 62
+        x: 200
+        y: 18
+        width: 51
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -850,7 +850,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d53d40ec650f9c94fb8b998c89503887
     internalID: 0
     vertices: []
     indices: 

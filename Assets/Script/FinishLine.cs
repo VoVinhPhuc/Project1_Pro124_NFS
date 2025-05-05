@@ -35,17 +35,14 @@ public class LapCounter : MonoBehaviour
 
     void RaceFinished()
     {
-        string racerName = isPlayer ? PlayerPrefs.GetString("NickName", "Player") : gameObject.name; // hoặc đặt là "NPC1", "NPC2",...
+        string racerName = isPlayer ? PlayerPrefs.GetString("NickName", "Player") : gameObject.name;
 
         GameManager.Instance.AddFinisher(racerName, isPlayer);
 
-        if (isPlayer)
-        {
-            GameManager.Instance.ShowVictoryPanel();
-        }
-        else
+        if (!isPlayer)
         {
             GameManager.Instance.NPCFinished(gameObject);
         }
     }
+
 }
