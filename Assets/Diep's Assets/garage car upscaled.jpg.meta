@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      garage car upscaled_0: -5619952179818952515
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

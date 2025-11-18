@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fire_truck_BG-removebg-preview_0: -4769468896354945503
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
